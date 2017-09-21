@@ -7,8 +7,11 @@ public class Project19 {
 
 	public static void main(String[] args)throws IOException {
 		boolean isThere = false;
-		Users user = new Users();
-		user.setUserName();
-		
+		Users user = new Users("KASEYNIEMAN");
+		//user.setUserName();
+		user.createUserFileName("KASEYNIEMAN");
+		user.setRealNameF();
+		user.loadUserInfo("KASEYNIEMAN");
+		user.outUserInfo();
 	}
 }
