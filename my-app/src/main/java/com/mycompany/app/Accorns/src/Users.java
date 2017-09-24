@@ -33,8 +33,12 @@ import java.lang.*
 	 * the class
 	 */
 	public void firstTimeSignup()throws IOException{
-		createUserName();
-		createUserFileName(userName);
+		if(createUserName())
+			createUserFileName(userName);
+		else {
+			clearUserInfo();
+			return;
+		}
 		setFirstName();
 		setLastName();
 		setEmail();
@@ -208,6 +212,7 @@ import java.lang.*
         } catch (IOException e) {
             e.printStackTrace();
         }
+		isLoggedIn = true;
 		return isThere;
 	}
 	
@@ -224,7 +229,7 @@ import java.lang.*
 	 * Password2
 	 */
 	
-	public void createUserName()throws IOException{
+	public boolean createUserName()throws IOException{
 		String tempInfo= "";
 		boolean isThere = true;
 		checkFile("Users.txt");
@@ -236,7 +241,7 @@ import java.lang.*
 			tempInfo = keys.nextLine().toUpperCase();
 			
 			if(tempInfo.equals("EXIT"))
-				return;
+				return false;
 			isThere = checkForName("Users.txt",tempInfo);
 			if(isThere)
 				System.out.println("That user name is already taken, please try another!");
@@ -244,10 +249,15 @@ import java.lang.*
 		}
 		
 		userName = tempInfo;
-		writeToFile("Users.txt", userName);
+		
 		
 		System.out.println("Please enter a password:");
 		tempInfo = keys.nextLine();
+		if(tempInfo.toUpperCase().equals("EXIT")) {
+			clearUserInfo();
+			return false;
+		}
+		
 		writeToFile("Users.txt", tempInfo);
 		
 		StringBuilder tempUserFileName = new StringBuilder(userName);
@@ -256,9 +266,11 @@ import java.lang.*
 		/*creates a user file that will fill
 		 * with users information
 		 */
+		writeToFile("Users.txt", userName);
 		checkFile(tempInfo);
 		createUserFileName(userName);
 		System.out.println("Thank You!");
+		return true;
 		
 	}
 	

@@ -18,7 +18,7 @@ public class Accorns {
 		Scanner keys = new Scanner(System.in);
 		while(!loggedIn) {
 			System.out.println("Enter the number of the command to excute:\n"
-					+ "1.Log In\n2.SignUp");
+					+ "1.Log In\n2.Sign Up");
 			select = keys.nextLine();
 			switch(select) {
 			case "1":
