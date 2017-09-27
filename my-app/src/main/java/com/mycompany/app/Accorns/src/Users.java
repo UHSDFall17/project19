@@ -1,7 +1,7 @@
 import java.util.*; 
 import java.io.*;
-import java.lang.*
-;public class Users {
+import java.lang.*;
+public class Users {
 	private String userName;
 	private String userEmail;
 	private String nameFirst;
@@ -258,17 +258,12 @@ import java.lang.*
 			return false;
 		}
 		
-		writeToFile("Users.txt", tempInfo);
-		
-		StringBuilder tempUserFileName = new StringBuilder(userName);
-		tempUserFileName.append(".txt");
-		tempInfo = tempUserFileName.toString();
-		/*creates a user file that will fill
-		 * with users information
-		 */
 		writeToFile("Users.txt", userName);
-		checkFile(tempInfo);
+		writeToFile("Users.txt", tempInfo/*Password*/);
+		
 		createUserFileName(userName);
+		checkFile(userFileName);
+		
 		System.out.println("Thank You!");
 		return true;
 		
