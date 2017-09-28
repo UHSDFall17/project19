@@ -138,6 +138,11 @@ public class Users {
 		tempUserFileName.append(".txt");
 		userFileName = tempUserFileName.toString();
 	}
+	public String appened(String orig, String add) {
+		StringBuilder tempUserFileName = new StringBuilder(orig);
+		tempUserFileName.append(add);
+		return (tempUserFileName.toString());
+	}
 	
 	//accepts input from the user for ".txt" addition
 	public void createUserFileName(String name) {
@@ -369,6 +374,9 @@ public class Users {
 	//returns username 
 	public String getUserName() {
 		return userName;
+	}
+	public String getUserFileName() {
+		return userFileName;
 	}
 	
 }

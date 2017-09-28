@@ -7,8 +7,13 @@ import java.util.Scanner;
 public class Accorns {
 	
 	public static void main(String[] args)throws IOException {
-			Users user = new Users();
+			Portfolio user = new Portfolio();
+			Stocks stock = new Stocks();
 			signupLoginMenu(user);
+			user.checkForPortfolio();
+			user.loadPortfolio();
+			System.out.println(stock.nameOf(user.getEtf()));
+			System.out.println("$ " + stock.priceOf(user.getEtf()));
 			
 		}
 	//log in menu
