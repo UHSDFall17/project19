@@ -157,12 +157,13 @@ public class Users {
 		boolean isThere = false;
 		//all user names are uppercase
 		name = name.toUpperCase();
+		String hashName = Integer.toString(name.hashCode());
         File file = new File(fileName);
 		try {
             BufferedReader b = new BufferedReader(new FileReader(file));
             String readLine = "";
             while ((readLine = b.readLine()) != null) {
-                if(readLine.equals(name)) 
+                if(readLine.equals(hashName)) 
                 	isThere = true;
                 readLine = b.readLine();
            
@@ -186,6 +187,8 @@ public class Users {
         boolean isThere = false;
         
         name = name.toUpperCase();
+        String hashName = Integer.toString(name.hashCode());
+        String hashPassword = Integer.toString(passWord.hashCode());
         File file = new File(fileName);
 		try {
             BufferedReader b = new BufferedReader(new FileReader(file));
@@ -193,10 +196,11 @@ public class Users {
             //Looks for username
             while ((readLine = b.readLine()) != null) {
             	//after finding username
-                if(readLine.equals(name)) { 
+                if(readLine.equals(hashName)) { 
                 	if((readLine = b.readLine()) != null){
+                		
                 		//checks to see if password is correct
-                		if(readLine.equals(passWord)) {
+                		if(readLine.equals(hashPassword)) {
                 			
                 			b.close();
                 			return true;
@@ -263,8 +267,8 @@ public class Users {
 			return false;
 		}
 		
-		writeToFile("Users.txt", userName);
-		writeToFile("Users.txt", tempInfo/*Password*/);
+		writeToFile("Users.txt", Integer.toString(userName.hashCode()));
+		writeToFile("Users.txt", Integer.toString(tempInfo.hashCode())/*Password*/);
 		
 		createUserFileName(userName);
 		checkFile(userFileName);
