@@ -3,6 +3,7 @@ public class Stocks {
 	Stocks(){
 	
 	}
+	
     // Given symbol, get HTML
     private static String readHTML(String symbol) {
         In page = new In("https://finance.google.com/finance?q=NASDAQ:" + symbol);

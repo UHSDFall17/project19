@@ -16,7 +16,7 @@ public class Portfolio extends Users {
 		BufferedReader br;
 		String line;
 		try {
-	        br = new BufferedReader(new FileReader(getUserFileName()));
+	        br = new BufferedReader(new FileReader(getUserName()+ ".txt"));
 	        try {
 	            while((line = br.readLine()) != null)
 	            {
@@ -62,7 +62,7 @@ public class Portfolio extends Users {
 				//Checks for integer
 				if(1 < Integer.parseInt(temp) && Integer.parseInt(temp) <4) {
 					portNum = Integer.parseInt(temp);
-					writeToFile(getUserFileName(),appened("PORTFOLIO ", temp));
+					doWriteToFile(getUserName() + ".txt","PORTFOLIO " + temp);
 					return;
 				}
 			}catch(NumberFormatException er)
@@ -93,4 +93,8 @@ public class Portfolio extends Users {
 	public String getEtf() {
 		return etf;
 	}
+	public void doWriteToFile(String fileName, String portFol) {
+		fileSystem.writeToFile(fileName, portFol);
+	}
+	
 }

@@ -15,12 +15,14 @@ public class Accorns {
 			System.out.println(stock.nameOf(user.getEtf()));
 			System.out.println("$ " + stock.priceOf(user.getEtf()));
 			
+			
 		}
 	//log in menu
 	public static void signupLoginMenu(Users user) throws IOException{
 		boolean loggedIn = false;
 		String select;
 		Scanner keys = new Scanner(System.in);
+		
 		while(!loggedIn) {
 			System.out.println("Enter the number of the command to excute:\n"
 					+ "1.Log In\n2.Sign Up");
