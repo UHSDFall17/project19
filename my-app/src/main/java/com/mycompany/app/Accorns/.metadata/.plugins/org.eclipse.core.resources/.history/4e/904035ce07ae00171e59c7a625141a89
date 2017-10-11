@@ -1,0 +1,21 @@
+import java.io.IOException;
+
+public class AccountManagement extends Portfolio {
+	
+	FileInOut fileSystem;
+	private String preinvestedAmount;
+	AccountManagement() throws IOException{
+		super();
+		fileSystem = new FileInOut();
+			}
+	public String retreveAccountBalance() {
+		return (preinvestedAmount = fileSystem.checkForInFile(getUserName() + ".txt", "PREBALANCE"));
+	}
+	public void addMoney() {
+		
+	}
+	public void removeMoney() {
+		
+	}
+	
+}

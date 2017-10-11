@@ -1,0 +1,19 @@
+
+public class AccountManagement {
+	
+	FileInOut fileSystem;
+	
+	AccountManagement(){
+		fileSystem = new FileInOut();
+	}
+	public void retreveAccountBalance() {
+		
+	}
+	public void addMoney() {
+		
+	}
+	public void removeMoney() {
+		
+	}
+	
+}
