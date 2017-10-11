@@ -20,6 +20,7 @@ public class AccountManagement extends Users {
 		fileSystem.replaceInFile(getUserName() + ".txt", "PREBALANCE " + df2.format(workingNum), "PREBALANCE " + preinvestedAmount);
 		preinvestedAmount = df2.format(workingNum);
 	}
+	
 	public void addMoney()throws IOException {
 		DecimalFormat df2 = new DecimalFormat(".##");
 		String temp;

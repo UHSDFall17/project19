@@ -68,6 +68,7 @@ public class Portfolio{
 		etf = "";
 		return false;
 	}
+	
 	//returns the etf
 	public String getEtf() {
 		return etf;
