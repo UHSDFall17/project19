@@ -101,6 +101,11 @@ public class Logger {
 			
 			return isThere;
 		}
+		public boolean logOut() {
+			userName = "";
+			isLoggedIn = false;
+			return false;
+		}
 		public String getUserName() {
 			return userName;
 		}

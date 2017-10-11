@@ -1,6 +1,8 @@
 import java.util.*; 
 import java.io.*;
 import java.lang.*;
+import java.math.BigDecimal;
+import java.text.DecimalFormat;
 public class Users {
 	private String userName;
 	private String userEmail;
@@ -10,6 +12,7 @@ public class Users {
 	private Logger log;
 	private SignUp signer;
 	public FileInOut fileSystem;
+	private Portfolio portfolio;
 	Scanner keys = new Scanner(System.in);
 	Users()throws IOException {
 		fileSystem = new FileInOut();
@@ -22,6 +25,7 @@ public class Users {
 		nameLast = "";
 		isLoggedIn = false;
 		log = new Logger();
+		portfolio = new Portfolio();
 	}
 	Users(String user)throws IOException {
 		checkFile("Users.txt");
@@ -45,10 +49,13 @@ public class Users {
 			clearUserInfo();
 			return false;
 		}
+		
 		setFirstName();
 		setLastName();
 		setEmail();
 		loadUserInfo(userName);
+		initBank();
+		portfolio.checkForPortfolio(userName);
 		isLoggedIn = true;
 		return isLoggedIn;
 	}
@@ -56,6 +63,7 @@ public class Users {
 		log.logIn();
 		userName = log.getUserName();
 		isLoggedIn = log.checkLogIn();
+		loadUserInfo(userName);
 		return log.checkLogIn();
 		
 	}
@@ -166,6 +174,24 @@ public class Users {
 		}
 		
 	}
+	public void initBank() {
+		DecimalFormat df2 = new DecimalFormat(".##");
+		String temp;
+		System.out.println("Please Enter The Inital Dollar Amount You Would Like to Add to Your Account:");
+		while(true) {
+			temp = keys.nextLine();
+			try {
+				//Checks for integer
+				if(0 <= Double.parseDouble(temp)) {
+					fileSystem.writeToFile(getUserName() + ".txt","PREBALANCE " + df2.format(Double.parseDouble(temp)));
+					return;
+				}
+			}catch(NumberFormatException er)
+			  {  }
+			System.out.println("Make sure it is a positive amount, please try again!");
+			
+		}
+	}
 	//returns first name
 	public String getFirstName() {
 		return nameFirst;
@@ -181,6 +207,12 @@ public class Users {
 	//returns username 
 	public String getUserName() {
 		return userName;
+	}
+	public boolean logOut() {
+		clearUserInfo();
+		log.logOut();
+		portfolio.logOut();
+		return false;
 	}
 	
 	

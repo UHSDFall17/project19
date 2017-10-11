@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<testsuite tests="4" failures="1" name="FileInOutTest" time="0.131" errors="0" skipped="0">
+<testsuite tests="4" failures="1" name="FileInOutTest" time="0.225" errors="0" skipped="0">
   <properties>
     <property name="java.runtime.name" value="Java(TM) SE Runtime Environment"/>
     <property name="sun.boot.library.path" value="C:\Program Files\Java\jdk1.8.0_144\jre\bin"/>
@@ -65,7 +65,10 @@
     <property name="sun.desktop" value="windows"/>
     <property name="sun.cpu.isalist" value="amd64"/>
   </properties>
-  <testcase classname="FileInOutTest" name="testCheckForName" time="0.131">
+  <testcase classname="FileInOutTest" name="testReplaceInFile" time="0.015"/>
+  <testcase classname="FileInOutTest" name="testWriteToFile" time="0.003"/>
+  <testcase classname="FileInOutTest" name="testCheckFile" time="0"/>
+  <testcase classname="FileInOutTest" name="testCheckForName" time="0.207">
     <failure message="expected:&lt;true&gt; but was:&lt;false&gt;" type="java.lang.AssertionError">java.lang.AssertionError: expected:&lt;true&gt; but was:&lt;false&gt;
 	at org.junit.Assert.fail(Assert.java:74)
 	at org.junit.Assert.failNotEquals(Assert.java:448)
@@ -138,7 +141,4 @@
 	at org.apache.maven.surefire.booter.ForkedBooter.main(ForkedBooter.java:75)
 </system-err>
   </testcase>
-  <testcase classname="FileInOutTest" name="testWriteToFile" time="0"/>
-  <testcase classname="FileInOutTest" name="testCheckFile" time="0"/>
-  <testcase classname="FileInOutTest" name="testReplaceInFile" time="0"/>
 </testsuite>

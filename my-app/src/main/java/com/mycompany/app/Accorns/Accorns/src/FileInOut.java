@@ -1,6 +1,7 @@
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
@@ -73,4 +74,36 @@ public class FileInOut {
 			}
 			return true;
 		}
+		public String checkForInFile(String fileName, String dataType) {
+			BufferedReader br;
+			String line;
+			try {
+		        br = new BufferedReader(new FileReader(fileName));
+		        try {
+		            while((line = br.readLine()) != null)
+		            {
+		                String[] words = line.split(" ");
+
+		                for (int i = 0; i < words.length; i++) {
+		                	String word = words[i];
+		                  if (word.equals(dataType)) {
+		                	  word = words[i+1];
+		           
+		                    return word;
+		                  }
+		                }
+
+		            }
+		            br.close();
+		        } catch (IOException e) {
+		            // TODO Auto-generated catch block
+		            e.printStackTrace();
+		        }
+			 } catch (FileNotFoundException e) {
+			        // TODO Auto-generated catch block
+			        e.printStackTrace();
+			    }
+		
+		return "-1";
+	}
 }

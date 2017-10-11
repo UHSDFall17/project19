@@ -2,52 +2,26 @@ import java.util.*;
 import java.io.*;
 import java.lang.*;
 
-public class Portfolio extends Users {
+public class Portfolio{
 	private int portNum;
 	private String etf;
-	
-	Portfolio() throws IOException{
-		super();
+	FileInOut fileSystem;
+	Portfolio(){
+		fileSystem = new FileInOut();
 	}
 	/*this method checks the userFile to see if the file has a portfolio dedicated to it and loads it
 	If no portfolio is found, it asks the user for which portfolio they want
 	accepts the userinput, and then ammends it to the userFile*/
-	public boolean checkForPortfolio() throws IOException{
-		BufferedReader br;
-		String line;
-		try {
-	        br = new BufferedReader(new FileReader(getUserName()+ ".txt"));
-	        try {
-	            while((line = br.readLine()) != null)
-	            {
-	                String[] words = line.split(" ");
-
-	                for (int i = 0; i < words.length; i++) {
-	                	String word = words[i];
-	                  if (word.equals("PORTFOLIO")) {
-	                	  word = words[i+1];
-	                	  setPortNum(word);
-	                    return true;
-	                  }
-	                }
-
-	            }
-	            br.close();
-	        } catch (IOException e) {
-	            // TODO Auto-generated catch block
-	            e.printStackTrace();
-	        }
-		 } catch (FileNotFoundException e) {
-		        // TODO Auto-generated catch block
-		        e.printStackTrace();
-		    }
-
-		selectPortfolio();
+	
+	public boolean checkForPortfolio(String userName) throws IOException{
+		portNum = Integer.parseInt(fileSystem.checkForInFile(userName+ ".txt", "PORTFOLIO"));
+		if(portNum < 0)
+			selectPortfolio(userName);
 		
 		return true;
 	}
 	//Allows the user on intial sign up to choose which portfolio they want.
-	public void selectPortfolio() {
+	public void selectPortfolio(String userName) {
 		Scanner keys = new Scanner(System.in);
 		
 		System.out.println("Please select one of the following\n"
@@ -62,7 +36,7 @@ public class Portfolio extends Users {
 				//Checks for integer
 				if(0 < Integer.parseInt(temp) && Integer.parseInt(temp) <4) {
 					portNum = Integer.parseInt(temp);
-					doWriteToFile(getUserName() + ".txt","PORTFOLIO " + temp);
+					doWriteToFile(userName + ".txt","PORTFOLIO " + temp);
 					return;
 				}
 			}catch(NumberFormatException er)
@@ -88,6 +62,11 @@ public class Portfolio extends Users {
 	//sets portNum input int
 	public void setPortNum(int input) {
 		portNum = input;
+	}
+	public boolean logOut() {
+		portNum = -1;
+		etf = "";
+		return false;
 	}
 	//returns the etf
 	public String getEtf() {
