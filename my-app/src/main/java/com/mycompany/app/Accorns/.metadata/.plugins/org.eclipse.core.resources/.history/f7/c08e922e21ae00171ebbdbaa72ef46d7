@@ -1,0 +1,85 @@
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileReader;
+import java.io.IOException;
+import java.util.Scanner;
+
+public class Accorns {
+	private static AccountManagement user;
+	public static void main(String[] args)throws IOException {
+			user = new AccountManagement();
+			Stocks stock = new Stocks();
+			signupLoginMenu();
+			
+			
+		}
+	//log in menu
+	public static void signupLoginMenu() throws IOException{
+		boolean loggedIn = false;
+		String select;
+		Scanner keys = new Scanner(System.in);
+		
+		while(!loggedIn) {
+			System.out.println("Enter the number of the command to excute:\n"
+					+ "1.Log In\n2.Sign Up\n3.Exit");
+			select = keys.nextLine();
+			switch(select) {
+			case "1":
+				clearConsole();
+				loggedIn = user.logIn();
+				clearConsole();
+				break;
+			
+			case "2":
+				clearConsole();
+				loggedIn = user.firstTimeSignup();
+				clearConsole();
+				loggedIn = user.checkLogIn("FirstTime");
+				break;
+			case "3":
+				clearConsole();
+				System.exit(0);
+				break;
+			default:
+				System.out.println("Sorry, that was not an option\n please try again\n");
+			}
+			signedInMenu();
+		}
+		
+	}
+	public static void signedInMenu()throws IOException {
+		boolean loggedIn = user.checkLogIn();
+		String select = "";
+		Scanner keys = new Scanner(System.in);
+		while(loggedIn) {
+			System.out.println("Welcome : " + user.getFirstName()
+								+ "\nUnInvested Balance: $" + user.retreveAccountBalance());
+			System.out.println("1: Add To Money Account\n"
+								+ "2: Log Out");
+			select = keys.nextLine();
+			switch(select) {
+				case "1":
+					clearConsole();
+					user.addMoney();
+					clearConsole();
+					break;
+		
+				case "2":
+					clearConsole();
+					loggedIn = user.logOut();
+					clearConsole();
+					break;
+				
+			default:
+				System.out.println("Sorry, that was not an option\nPlease try again\n");
+			}
+		}
+		signupLoginMenu();
+		
+		
+	}
+	public static void clearConsole() {
+		for(int i = 0; i < 50; i++)
+			System.out.println("\n");
+	}
+}
