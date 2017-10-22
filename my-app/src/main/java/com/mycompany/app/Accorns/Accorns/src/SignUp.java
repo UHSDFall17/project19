@@ -23,7 +23,7 @@ public class SignUp {
 	public boolean createUserName()throws IOException{
 		String tempInfo= "";
 		boolean isThere = true;
-		fileSystem.checkFile("Users.txt");
+		fileSystem.checkForFile("Users.txt");
 		
 		System.out.println("Type 'Exit' to return to the home menu");
 		
@@ -53,7 +53,7 @@ public class SignUp {
 		fileSystem.writeToFile("Users.txt", Integer.toString(tempInfo.hashCode())/*Password*/);
 		
 		
-		fileSystem.checkFile(userName + ".txt");
+		fileSystem.checkForFile(userName + ".txt");
 		
 		System.out.println("Thank You!");
 		return true;

@@ -12,13 +12,13 @@ public class Users {
 	private Logger log;
 	private SignUp signer;
 	public FileInOut fileSystem;
-	private Portfolio portfolio;
+	protected Portfolio portfolio;
 	Scanner keys = new Scanner(System.in);
 	Users()throws IOException {
 		fileSystem = new FileInOut();
-		checkFile("Users.txt");
+		checkForFile("Users.txt");
 		log = new Logger();
-		signer = new SignUp();
+		
 		userName = "";
 		userEmail = "";
 		nameFirst = "";
@@ -28,7 +28,7 @@ public class Users {
 		portfolio = new Portfolio();
 	}
 	Users(String user)throws IOException {
-		checkFile("Users.txt");
+		checkForFile("Users.txt");
 		log = new Logger();
 		userName = user;
 		userEmail = "";
@@ -43,8 +43,8 @@ public class Users {
 	 * the class
 	 */
 	public boolean firstTimeSignup()throws IOException{
-		if(signer.createUserName())
-			userName = signer.getUserName();
+		if(log.signUp())
+			userName = log.getUserName();
 		else {
 			clearUserInfo();
 			return false;
@@ -59,17 +59,23 @@ public class Users {
 		isLoggedIn = true;
 		return isLoggedIn;
 	}
-	public boolean logIn() {
-		log.logIn();
-		userName = log.getUserName();
-		isLoggedIn = log.checkLogIn();
-		loadUserInfo(userName);
-		return log.checkLogIn();
+	
+	//Calls the logger login method, and then gets the userName and and logged in status
+	//
+	public boolean logIn() throws IOException {
+		if(log.logIn()) {
+			userName = log.getUserName();
+			isLoggedIn = log.checkLogIn();
+			loadUserInfo(userName);
+			portfolio.checkForPortfolio(userName);
+			return log.checkLogIn();
+		}
+		return false;
 		
 	}
 	
-	//checkFile checks to see if file is there and creates one if needed
-	public void checkFile(String fileName) throws IOException {
+	//checkForFile checks to see if file is there and creates one if needed
+	public void checkForFile(String fileName) throws IOException {
 		File file = new File(fileName);
 		if(!file.exists()) {
 			file.createNewFile();
@@ -82,7 +88,8 @@ public class Users {
 	 * Email
 	 */
 	public void loadUserInfo(String userName) {
-		File file = new File(userName +".txt");
+		File file = new File(System.getProperty("user.home") + File.separator + "Documents" 
+							 + File.separator + "Accorns_Accounts" + File.separator +  userName + ".txt");
 		try {
             BufferedReader b = new BufferedReader(new FileReader(file));
             nameFirst = b.readLine();
@@ -174,8 +181,10 @@ public class Users {
 		}
 		
 	}
+	
+	//initilzes the bank 
 	public void initBank() {
-		DecimalFormat df2 = new DecimalFormat(".##");
+		DecimalFormat df2 = new DecimalFormat("#.##");
 		String temp;
 		System.out.println("Please Enter The Inital Dollar Amount You Would Like to Add to Your Account:");
 		while(true) {
@@ -184,6 +193,7 @@ public class Users {
 				//Checks for integer
 				if(0 <= Double.parseDouble(temp)) {
 					fileSystem.writeToFile(getUserName() + ".txt","PREBALANCE " + df2.format(Double.parseDouble(temp)));
+					fileSystem.writeToFile(getUserName() + ".txt", "INVESTEDBAL " + df2.format(0));
 					return;
 				}
 			}catch(NumberFormatException er)
@@ -192,6 +202,7 @@ public class Users {
 			
 		}
 	}
+	
 	//returns first name
 	public String getFirstName() {
 		return nameFirst;
@@ -208,12 +219,19 @@ public class Users {
 	public String getUserName() {
 		return userName;
 	}
+	
 	public boolean logOut() {
 		clearUserInfo();
 		log.logOut();
 		portfolio.logOut();
 		return false;
 	}
+	
+	public static void promptEnterKey(){
+		   System.out.println("Press \"ENTER\" to continue...");
+		   Scanner scanner = new Scanner(System.in);
+		   scanner.nextLine();
+		}
 	
 	
 }

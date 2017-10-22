@@ -14,6 +14,45 @@ public class Logger {
 		fileSystem = new FileInOut();
 
 	}
+	public boolean signUp()throws IOException{
+		String tempInfo= "";
+		boolean isThere = true;
+		fileSystem.checkForFile("Users.txt");
+		
+		System.out.println("Type 'Exit' to return to the home menu");
+		
+		while(isThere) {
+			System.out.println("Enter a userName:");
+			tempInfo = keys.nextLine().toUpperCase();
+			
+			if(tempInfo.equals("EXIT"))
+				return false;
+			isThere = fileSystem.checkForName("Users.txt",tempInfo);
+			if(isThere)
+				System.out.println("That user name is already taken, please try another!");
+			
+		}
+		
+		userName = tempInfo;
+		
+		
+		System.out.println("Please enter a password:");
+		tempInfo = keys.nextLine();
+		if(tempInfo.toUpperCase().equals("EXIT")) {
+			userName = "";
+			return false;
+		}
+		
+		fileSystem.writeToFile("Users.txt", Integer.toString(userName.hashCode()));
+		fileSystem.writeToFile("Users.txt", Integer.toString(tempInfo.hashCode())/*Password*/);
+		
+		
+		fileSystem.checkForFile(userName + ".txt");
+		
+		System.out.println("Thank You!");
+		return true;
+		
+	}
 	/*Login method, asks for the user name, then looks for the user name in the 
 	 * Users.txt file, then looks for the password in the same file,
 	 * then loads all the users personal information from the users personal file
@@ -26,10 +65,10 @@ public class Logger {
 		
 		do {
 			tempInfo = keys.nextLine().toUpperCase();
-			check = fileSystem.checkForName("Users.txt", tempInfo);
 			if(tempInfo.equals("EXIT")) {
 				return false;
 			}
+			check = fileSystem.checkForName("Users.txt", tempInfo);
 			if(!check)
 				System.out.println("Sorry, that user name was not found, please try again");
 		}while(!check);
