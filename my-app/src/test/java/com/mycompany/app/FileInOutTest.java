@@ -20,11 +20,6 @@ public class FileInOutTest {
 		assertEquals(true, test);
 	}
 
-	@Test
-	public void testCheckFile() throws IOException {
-		FileInOut fileSystem = new FileInOut();
-		boolean test = fileSystem.checkForFile("testDoc.txt");
-		assertEquals(true, test);
-	}
+	
 
 }
