@@ -11,7 +11,7 @@ public class PortfolioTest {
 	public void testLogOut() {
 		Portfolio portfolio = new Portfolio();
 		portfolio.logOut();
-		String[] ETF = portfolio.geteTF();
+		String[] ETF = portfolio.getEtf();
 		assertEquals("", ETF[0]);
 	}
 
