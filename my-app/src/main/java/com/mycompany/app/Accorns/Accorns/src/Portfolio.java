@@ -86,7 +86,9 @@ public class Portfolio{
 	}
 	public boolean logOut() {
 		portNum = -1;
-		
+		for(int i =0; i < etf.length; i ++) {
+			etf[i] = "";
+		}
 		return false;
 	}
 	
