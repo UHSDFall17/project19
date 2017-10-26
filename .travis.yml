@@ -1,5 +1,5 @@
 language: java
-script: mvn clean compile -DskiptTests
+script: mvn -f my-app/pom.xml clean compile test
 notifications:
   email:
     - knknieman@gmail.com
