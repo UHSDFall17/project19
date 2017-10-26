@@ -2,6 +2,9 @@ import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
+import java.nio.file.FileSystem;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.Scanner;
 
 public class Accorns {
@@ -9,12 +12,7 @@ public class Accorns {
 	private static boolean loggedIn;
 	public static void main(String[] args)throws IOException {
 			user = new AccountManagement();
-			Stocks stock = new Stocks();
-			//System.out.println(stock.nameOf("AAPL"));
-			//System.out.println(stock.priceOf("AAPL"));
 			signupLoginMenu();
-			
-			
 	}
 	//log in menu
 	public static void signupLoginMenu() throws IOException{
@@ -66,8 +64,10 @@ public class Accorns {
 			System.out.println("Welcome " + user.getFirstName()
 								+ "\nUnInvested Balance: $" + user.retrevePreinvestedBalance()
 								+ "\nInvested Balance: $" + user.retreveInvestedBalance()
-								+ "\nCurrent Portfolio Worth: $" + user.returnPortfolioAverage()
-								+ "\nProfit: $" + user.retreveProfit());
+								+ "\nCurrent Portfolio Worth Per Stock: $" + user.returnPortfolioAverage()
+								+ "\nCurrent Entire Portfolio Worth: $" + user.retreveCalPortfolioWorth()
+								+ "\nProfit: $" + user.retreveProfit()
+								+ "\nProfit Increase Percentage: %" + user.retreveProfitPercent());
 			
 			System.out.println("1: Add To Money Account\n"
 								+ "2: Invest Money\n"
@@ -113,18 +113,22 @@ public class Accorns {
 		
 		
 	}
-	public static void portfolioMenu() {
+	public static void portfolioMenu() throws IOException{
 		boolean inMenu = true;
 		Scanner keys = new Scanner(System.in);
 		String select;
 		while(inMenu) {
-			System.out.println("Welcome " + user.getFirstName()
+			System.out.println("Portfolio Menu:\n\n"
+								+ "Welcome " + user.getFirstName() 
 								+ "\nUnInvested Balance: $" + user.retrevePreinvestedBalance()
 								+ "\nInvested Balance: $" + user.retreveInvestedBalance()
-								+ "\nCurrent Portfolio Worth: $" + user.returnPortfolioAverage());
+								+ "\nCurrent Portfolio Worth Per Stock: $" + user.returnPortfolioAverage()
+								+ "\nCurrent Entire Portfolio Worth: $" + user.retreveCalPortfolioWorth()
+								+ "\nProfit: $" + user.retreveProfit()
+								+ "\nProfit Increase Percentage: %" + user.retreveProfitPercent());
 			
 			System.out.println("1: Portfolio Breakdown\n"
-								+ "2: Invest Money\n"
+								+ "2: Investment History\n"
 								+ "3: Portfolio Menu\n"
 								+ "4: Back To Main Menu");
 			
@@ -139,7 +143,8 @@ public class Accorns {
 		
 				case "2":
 					clearConsole();
-					
+					user.investmentHistory();
+					promptEnterKey();
 					clearConsole();
 					break;
 					

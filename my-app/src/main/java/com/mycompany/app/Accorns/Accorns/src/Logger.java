@@ -9,9 +9,11 @@ public class Logger {
 	private String userName;
 	private boolean isLoggedIn;
 	private FileInOut fileSystem;
+	private String path;
 	Scanner keys = new Scanner(System.in);
 	Logger(){
 		fileSystem = new FileInOut();
+		path = System.getProperty("user.home") + File.separator + "Documents" + File.separator + "Accorns_Accounts" + File.separator;
 
 	}
 	public boolean signUp()throws IOException{
@@ -105,7 +107,7 @@ public class Logger {
 	        name = name.toUpperCase();
 	        String hashName = Integer.toString(name.hashCode());
 	        String hashPassword = Integer.toString(passWord.hashCode());
-	        File file = new File(fileName);
+	        File file = new File(path + fileName);
 			try {
 	            BufferedReader b = new BufferedReader(new FileReader(file));
 	            String readLine = "";

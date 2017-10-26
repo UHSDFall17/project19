@@ -59,16 +59,12 @@ public class FileInOut {
 			String oldCon = "";
 			String line = reader.readLine();
 			
-			System.out.println(newString + "\n" + oldString);
-			
 			while (line != null) 
 			{
 				oldCon = oldCon + line + System.lineSeparator();
 				line = reader.readLine();
 			}		
 			String newCon = oldCon.replaceAll(oldString, newString);
-			System.out.println(oldCon);
-			System.out.println(newCon);
 			FileWriter writer = new FileWriter(file);
 			writer.write(newCon);
 			writer.close();
@@ -130,5 +126,62 @@ public class FileInOut {
 		
 			return "-1";
 		}
-	
+		
+		public String[] checkForInvest(String fileName)throws IOException{
+			BufferedReader br;
+			String read = "";
+			String hold = "";
+			//used to return something
+			String[] returnString = new String[1];
+			boolean test = true;
+			int countFinal = 0;
+			
+			try {
+		        
+				br = new BufferedReader(new FileReader(path + File.separator + "Accorns_Accounts" + File.separator + fileName));
+		        
+		        try {
+		            
+		            do{
+		            		read = br.readLine();
+		            		hold = hold + read + " ";
+		            	
+		                }while((read != null));
+		            	
+		            	String[] wholeFile = hold.split(" ");
+		            	for(int i = 0; i < wholeFile.length && test; i ++) {
+		            		if(wholeFile[i].equals("INVESTMENTS")) {
+		            			countFinal = i;
+		            			test = false;
+		            		}
+		            		
+		            		
+		            	}
+		            	String[] finalData = new String[wholeFile.length - (countFinal + 2)];
+		            	//countFinal incremented to move pass INVESTMENTS
+		            	countFinal ++;
+		            	for(int i = 0; countFinal < wholeFile.length - 1; i ++) {
+		            		
+		            		finalData[i] = wholeFile[countFinal];
+		            		
+		            		countFinal++;
+		            		
+		            	}
+		              
+		            	
+
+		            
+		            br.close();
+		            return finalData;
+		        } catch (IOException e) {
+		            // TODO Auto-generated catch block
+		            e.printStackTrace();
+		        }
+			 } catch (FileNotFoundException e) {
+			        // TODO Auto-generated catch block
+			        e.printStackTrace();
+			    }
+		
+			return returnString;
+		}
 }

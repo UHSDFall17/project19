@@ -1,28 +1,53 @@
 import java.io.IOException;
 import java.text.DecimalFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 public class AccountManagement extends Users {
 	
 	FileInOut fileSystem;
-	private String preinvestedAmount;
-	private String investedAmount;
-	private String profit;
+	private double preinvestedAmount;
+	private double investedAmount;
+	private double profit;
+	private double portfolioWorth;
+	private double profitPer;
 	AccountManagement() throws IOException{
 		super();
 		fileSystem = new FileInOut();
 	}
 	
-	public String retrevePreinvestedBalance() {
-		return (preinvestedAmount = fileSystem.checkForInFile(getUserName() + ".txt", "PREBALANCE"));
+	public double retrevePreinvestedBalance() {
+		return (preinvestedAmount = Double.parseDouble(fileSystem.checkForInFile(getUserName() + ".txt", "PREBALANCE")));
 	}
 	
-	public String retreveInvestedBalance() {
-		return (investedAmount = fileSystem.checkForInFile(getUserName() + ".txt", "INVESTEDBAL"));
+	public double retreveInvestedBalance() {
+		return (investedAmount = Double.parseDouble(fileSystem.checkForInFile(getUserName() + ".txt", "INVESTEDBAL")));
 	}
 	
-	public String retreveProfit() {
-		return ("0.00");
+	public double retreveCalPortfolioWorth()throws IOException {
+		return (calPortfolioWorth());
 	}
+	public double retreveProfitPercent()throws IOException{
+		String[] investments = fileSystem.checkForInvest(getUserName() +".txt");
+		DecimalFormat df2 = new DecimalFormat("#.######");
+		
+		
+		return Double.parseDouble(df2.format(calChange(investedAmount, calPortfolioWorth())));
+	}
+	
+	public double retreveProfit()throws IOException{
+		String[] investments = fileSystem.checkForInvest(getUserName() +".txt");
+		DecimalFormat df2 = new DecimalFormat("#.##");
+		profit = 0;
+		
+		for(int i = 1; i < investments.length; i++) {
+			
+			profit +=  ((Double.parseDouble(investments[i+1]) * calChange(Double.parseDouble(investments[i]), returnPortfolioAverage())));
+			i += 2;
+		}
+		return Double.parseDouble(df2.format(profit));
+	}
+	
 	
 	public void loadAmounts() {
 		retrevePreinvestedBalance();
@@ -34,10 +59,10 @@ public class AccountManagement extends Users {
 		DecimalFormat df2 = new DecimalFormat("#.##");
 		workingNum = startingBal;
 		workingNum = workingNum + addAmount;
-		System.out.println(preinvestedAmount);
+		
 		fileSystem.replaceInFile(getUserName() + ".txt", "PREBALANCE "+ df2.format(workingNum), "PREBALANCE " + df2.format(startingBal));
-		preinvestedAmount = df2.format(workingNum);
-		System.out.println(preinvestedAmount);
+		preinvestedAmount = Double.parseDouble(df2.format(workingNum));
+		
 	}
 	
 	public void addMoneyInv(double addAmount, double startingBal)throws IOException {
@@ -45,9 +70,9 @@ public class AccountManagement extends Users {
 		DecimalFormat df2 = new DecimalFormat("#.##");
 		workingNum = startingBal;
 		workingNum = workingNum + addAmount;
-		System.out.println("In money Inv " + startingBal);
+		
 		fileSystem.replaceInFile(getUserName() + ".txt", "INVESTEDBAL "+ df2.format(workingNum), "INVESTEDBAL " + df2.format(startingBal));
-		investedAmount = df2.format(workingNum);
+		investedAmount = Double.parseDouble(df2.format(workingNum));
 	}
 	
 	public void addMoneyPre()throws IOException {
@@ -63,7 +88,7 @@ public class AccountManagement extends Users {
 			try {
 				//Checks for integer
 				if(0 <= Double.parseDouble(temp)) {
-					addMoney(Double.parseDouble(df2.format(Double.parseDouble(temp))), Double.parseDouble(preinvestedAmount));
+					addMoney(Double.parseDouble(df2.format(Double.parseDouble(temp))), preinvestedAmount);
 					return;
 				}
 			}catch(NumberFormatException er)
@@ -78,10 +103,10 @@ public class AccountManagement extends Users {
 		
 		double workingNum = 0.00;
 		DecimalFormat df2 = new DecimalFormat("#.##");
-		workingNum = Double.parseDouble(preinvestedAmount);
+		workingNum = preinvestedAmount;
 		workingNum = workingNum - subAmount;
-		fileSystem.replaceInFile(getUserName() + ".txt", "PREBALANCE " + df2.format(workingNum), "PREBALANCE " + preinvestedAmount);
-		preinvestedAmount = df2.format(workingNum);
+		fileSystem.replaceInFile(getUserName() + ".txt", "PREBALANCE " + df2.format(workingNum), "PREBALANCE " + df2.format(preinvestedAmount));
+		preinvestedAmount = Double.parseDouble(df2.format(workingNum));
 			
 	}
 	
@@ -89,17 +114,22 @@ public class AccountManagement extends Users {
 		loadAmounts();
 		DecimalFormat df2 = new DecimalFormat("#.##");
 		String temp;
-		//System.out.println(investedAmount);
 		
 		System.out.println("Please Enter The Inital Dollar Amount You Would Like to invest from Your Account:");
 		while(true) {
 			temp = keys.nextLine();
 			try {
-				//Checks for integer
-				if(0 <= Double.parseDouble(temp) && Double.parseDouble(temp) <= Double.parseDouble(preinvestedAmount)) {
+				//Checks for Double
+				if(0 <= Double.parseDouble(temp) && Double.parseDouble(temp) <= preinvestedAmount) {
+					//Removes the money from the preinvested balance
 					removeMoney(Double.parseDouble(df2.format(Double.parseDouble(temp))));
-					System.out.println("In invest Method " + investedAmount);
-					addMoneyInv(Double.parseDouble(df2.format(Double.parseDouble(temp))), Double.parseDouble(investedAmount));
+					
+					//Adds the money to the invested Balance
+					addMoneyInv(Double.parseDouble(df2.format(Double.parseDouble(temp))), investedAmount);
+
+					//Adds the Date and the invested amount(One time not total) to the bottom of the text file
+					fileSystem.writeToFile(getUserName() + ".txt", new SimpleDateFormat("MM-dd-yyyy").format(new Date()) 
+											+ " " + returnPortfolioAverage() + " " + df2.format(Double.parseDouble(temp)));
 					return;
 				}
 			}catch(NumberFormatException er)
@@ -109,7 +139,7 @@ public class AccountManagement extends Users {
 		}
 	}
 	public double returnPortfolioAverage() {
-		return portfolio.portfolioAverage();
+		return portfolio.portfolioWorth();
 	}
 	
 	public void showPortfolioBreakdown() {
@@ -122,9 +152,36 @@ public class AccountManagement extends Users {
 		}
 	}
 	
+	public double calPortfolioWorth() throws IOException {
+		String[] investments = fileSystem.checkForInvest(getUserName() +".txt");
+		DecimalFormat df2 = new DecimalFormat("#.##");
+		portfolioWorth = 0;
+		
+		for(int i = 1; i < investments.length; i++) {
+			
+			portfolioWorth +=  (Double.parseDouble(investments[i+1]) + (Double.parseDouble(investments[i+1]) * calChange(Double.parseDouble(investments[i]), returnPortfolioAverage())));
+			i += 2;
+		}
+		return Double.parseDouble(df2.format(portfolioWorth));
+	}
+	
+	public double calChange(double orginalAmount, double newAmount) {
+		return((newAmount - orginalAmount)/ orginalAmount);
+	}
+	public void investmentHistory() throws IOException{
+		String[] temp = fileSystem.checkForInvest(getUserName() + ".txt");
+		System.out.println("Investment History");
+		for(int i = 0; i < temp.length; i++) {
+			System.out.println("Investment Date: " + temp[i]
+								+ "\nWorth of Portfolio Per Stock: $" + temp[i+1]
+								+ "\nInvestment Amount: $" + temp[i + 2] + "\n");
+			i += 2;
+		}
+	}
+	
 	public boolean logOut() {
 		super.logOut();
-		preinvestedAmount = "";
+		preinvestedAmount = 0.0;
 		return false;
 	}
 	

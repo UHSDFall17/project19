@@ -5,6 +5,7 @@ import java.text.DecimalFormat;
 
 public class Portfolio{
 	private int portNum;
+	private double portWorth;
 	private String[] etf;
 	FileInOut fileSystem;
 	Stocks stock;
@@ -22,9 +23,12 @@ public class Portfolio{
 		portNum = Integer.parseInt(fileSystem.checkForInFile(userName + ".txt", "PORTFOLIO"));
 		if(portNum < 0)
 			selectPortfolio(userName);
-		System.out.println(portNum + " in checkFor portFolio");
 		loadPortfolio();
+		portWorth = portfolioAverage();
 		return true;
+	}
+	public double portfolioWorth() {
+		return portWorth;
 	}
 	//Allows the user on intial sign up to choose which portfolio they want.
 	public void selectPortfolio(String userName) {

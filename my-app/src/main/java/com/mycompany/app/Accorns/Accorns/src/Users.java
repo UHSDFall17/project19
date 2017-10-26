@@ -35,7 +35,7 @@ public class Users {
 		nameFirst = "";
 		nameLast = "";
 		loadUserInfo(user);
-		outUserInfo();
+		
 	}
 	/*First time sign it, creates user name, password
 	 * File to store information, then files that file
@@ -50,12 +50,21 @@ public class Users {
 			return false;
 		}
 		
-		setFirstName();
-		setLastName();
-		setEmail();
+		setFirstName();//Sets first name
+		setLastName();//Sets last name
+		setEmail();//sets email
+		
+		//redundecny to ensure that everything is loaded
 		loadUserInfo(userName);
+		
+		//initizes the banking in file
 		initBank();
+		
+		//creates the portfolio and loads the portfolio
 		portfolio.checkForPortfolio(userName);
+		
+		//Header to declare in file when investments start
+		fileSystem.writeToFile(userName + ".txt", "INVESTMENTS");
 		isLoggedIn = true;
 		return isLoggedIn;
 	}
@@ -64,9 +73,12 @@ public class Users {
 	//
 	public boolean logIn() throws IOException {
 		if(log.logIn()) {
+			//loads all of the users information, including updating logged in status,
+			//userName, user info, and portfolio info
 			userName = log.getUserName();
 			isLoggedIn = log.checkLogIn();
 			loadUserInfo(userName);
+			System.out.println("One Moment Please...");
 			portfolio.checkForPortfolio(userName);
 			return log.checkLogIn();
 		}
@@ -100,6 +112,7 @@ public class Users {
         } catch (IOException e) {
             e.printStackTrace();
         }
+		
 	}
 	
 	//clears out loaded user info when logging out
@@ -110,14 +123,7 @@ public class Users {
 		nameLast = "";
 		isLoggedIn = false;
 	}
-	//used to output users info to command line
-	public void outUserInfo() {
-		System.out.println(userName);
-		System.out.println(nameFirst);
-		System.out.println(nameLast);
-		System.out.println(userEmail);
-	}
-	
+
 	
 	
 	
@@ -126,11 +132,6 @@ public class Users {
 		isLoggedIn = log.checkLogIn();
 		return isLoggedIn;
 	}
-	public boolean checkLogIn(String decider) {
-		return isLoggedIn;
-	}
-
-	
 	
 	//Set the first name on the account
 	public void setFirstName()throws IOException {
