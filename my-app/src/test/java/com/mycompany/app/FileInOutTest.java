@@ -23,7 +23,7 @@ public class FileInOutTest {
 	@Test
 	public void testCheckFile() throws IOException {
 		FileInOut fileSystem = new FileInOut();
-		boolean test = fileSystem.checkFile("testDoc.txt");
+		boolean test = fileSystem.checkForFile("testDoc.txt");
 		assertEquals(true, test);
 	}
 
