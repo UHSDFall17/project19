@@ -2,6 +2,7 @@ import java.io.IOException;
 import java.text.DecimalFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.Scanner;
 
 public class AccountManagement extends Users {
 	
@@ -13,6 +14,10 @@ public class AccountManagement extends Users {
 	private double profitPer;
 	AccountManagement() throws IOException{
 		super();
+		profit = 0;
+		investedAmount = 0;
+		portfolioWorth = 0;
+		profitPer = 0;
 		fileSystem = new FileInOut();
 	}
 	
@@ -28,11 +33,9 @@ public class AccountManagement extends Users {
 		return (calPortfolioWorth());
 	}
 	public double retreveProfitPercent()throws IOException{
-		String[] investments = fileSystem.checkForInvest(getUserName() +".txt");
-		DecimalFormat df2 = new DecimalFormat("#.######");
+		DecimalFormat df2 = new DecimalFormat("#.##");
 		
-		
-		return Double.parseDouble(df2.format(calChange(investedAmount, calPortfolioWorth())));
+		return Double.parseDouble(df2.format(100*calChange(investedAmount, calPortfolioWorth())));
 	}
 	
 	public double retreveProfit()throws IOException{
@@ -110,6 +113,7 @@ public class AccountManagement extends Users {
 			
 	}
 	
+	
 	public void invest()throws IOException{
 		loadAmounts();
 		DecimalFormat df2 = new DecimalFormat("#.##");
@@ -162,13 +166,19 @@ public class AccountManagement extends Users {
 			portfolioWorth +=  (Double.parseDouble(investments[i+1]) + (Double.parseDouble(investments[i+1]) * calChange(Double.parseDouble(investments[i]), returnPortfolioAverage())));
 			i += 2;
 		}
+		
 		return Double.parseDouble(df2.format(portfolioWorth));
 	}
 	
 	public double calChange(double orginalAmount, double newAmount) {
+		if(orginalAmount == 0)
+			return 0;
+		
 		return((newAmount - orginalAmount)/ orginalAmount);
 	}
-	public void investmentHistory() throws IOException{
+	
+	
+	public void currentInvestmentHistory() throws IOException{
 		String[] temp = fileSystem.checkForInvest(getUserName() + ".txt");
 		System.out.println("Investment History");
 		for(int i = 0; i < temp.length; i++) {
@@ -177,6 +187,83 @@ public class AccountManagement extends Users {
 								+ "\nInvestment Amount: $" + temp[i + 2] + "\n");
 			i += 2;
 		}
+	}
+	
+	public void cashOutPortfolio()throws IOException {
+		Scanner keys = new Scanner(System.in);
+		double cashOutAmount = 0.0;
+		DecimalFormat df2 = new DecimalFormat("#.##");
+		boolean inputAccepted = false;
+		String content = "";
+		String temp = "";
+		String[] investments = fileSystem.checkForInvest(getUserName() + ".txt");
+		
+		System.out.println("Enter the dollar amount you would like to pull from your portfolio\n"
+							+ "Please make sure it is less than your portfolios value\n"
+							+ "Portfolio Value: $" + calPortfolioWorth());
+		
+		
+		while(!inputAccepted) {
+		    temp = keys.nextLine();
+			try {
+				//Checks for double and correct amount
+				if(0 <= Double.parseDouble(temp) && Double.parseDouble(temp) <= calPortfolioWorth() ) {
+					
+					inputAccepted = true;
+					
+				}
+			}catch(NumberFormatException er){}
+			
+			if(!inputAccepted)
+				System.out.println("Make sure it is a positive amount that is less than your full portfolio value, please try again!");
+		}
+			cashOutAmount = Double.parseDouble(df2.format(Double.parseDouble(temp)));
+			
+			double calCashOut = cashOutAmount;
+			
+			//Date invested----Date cashed Out-----Worth Per stock when bought-------Worth per stock now-------Amount invested-----Amount Worth Now
+			for(int i = 0; i < investments.length && calCashOut > 0; i ++) {
+				String date = investments[i];
+				double ogPricePer = Double.parseDouble(investments[i+1]);
+				double ogAmount = Double.parseDouble(investments[i+2]);
+				double worth = Double.parseDouble(df2.format(ogAmount + (ogPricePer * calChange(ogPricePer, portfolio.portfolioWorth()))));
+				System.out.println(i);
+				System.out.println(ogPricePer);
+				System.out.println(ogAmount);
+				System.out.println(worth);
+				calCashOut -= worth;
+				System.out.println(calCashOut);
+				
+				fileSystem.deleteUnderSubheading(getUserName() + ".txt", "INVESTMENTS");
+				//101.82
+				if(calCashOut < 0) {
+					//This is used to hold converted og value
+					double newWorth = (-calCashOut + ((-calCashOut)* calChange(portfolio.portfolioWorth(), ogPricePer)));
+					
+					System.out.println(newWorth);
+					System.out.println(newWorth + (newWorth * calChange(ogPricePer, portfolio.portfolioWorth())));
+					content = date + " " + ogPricePer + " " + df2.format(newWorth);
+					System.out.println(content);
+					
+					//Used to hold converted og value
+					newWorth = ((calCashOut + ogAmount) + ((calCashOut + ogAmount) * calChange(portfolio.portfolioWorth(), ogPricePer)));
+					fileSystem.addToSubheading(getUserName() + ".txt", content , "INVESTMENTS");
+					content = date + " " + new SimpleDateFormat("MM-dd-yyyy").format(new Date()) + " " + ogPricePer
+							+ " " + portfolio.portfolioWorth() + " " +  df2.format(newWorth) + " "
+							+ df2.format(calCashOut + worth);
+					System.out.println(content);
+				}
+				else
+					content = date + " " + new SimpleDateFormat("MM-dd-yyyy").format(new Date()) + " " + ogPricePer
+							+ " " + portfolio.portfolioWorth() + " " +  ogAmount + " " + worth;
+				System.out.println(content);
+					fileSystem.addToSubheading(getUserName() + ".txt", content, "PAST_INVESTMENTS");
+				
+					i +=2;
+			}
+			//addMoney(cashOutAmount, preinvestedAmount);
+			//addMoneyInv(-cashOutAmount, investedAmount);
+		
 	}
 	
 	public boolean logOut() {

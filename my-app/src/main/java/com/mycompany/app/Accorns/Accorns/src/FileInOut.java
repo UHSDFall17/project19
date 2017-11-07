@@ -73,6 +73,32 @@ public class FileInOut {
 			
 		}
 		
+		public void addToSubheading(String fileName, String content, String checkFor) throws IOException{
+		    File file = new File(path + File.separator + "Accorns_Accounts" + File.separator + fileName); 
+		    File filePath = new File(path + File.separator + "Accorns_Accounts");
+		    File temp = File.createTempFile("temp-file-name", ".txt", filePath);
+		    BufferedReader br = new BufferedReader(new FileReader( file ));
+		    PrintWriter pw =  new PrintWriter(new FileWriter( temp ));
+		    String line;
+		    
+		    while ((line = br.readLine()) != null) {
+		        pw.println(line);
+		        if(line.equals(checkFor)){
+		        	
+		            pw.println(content);
+		        }
+		      
+		    }
+		    br.close();
+		    pw.close();
+		    br.close();
+		    pw.close();
+		    System.out.println(file.exists());
+		    System.out.println(file.getAbsolutePath());
+		    System.out.println(file.delete());
+		    System.out.println(temp.renameTo(file));
+		}
+		
 		//checkFile checks to see if file is there and creates one if needed
 		public boolean checkForFile(String fileName) throws IOException {
 			 File files = new File(path + File.separator + "Accorns_Accounts");
@@ -127,6 +153,7 @@ public class FileInOut {
 			return "-1";
 		}
 		
+		//Change for inclusion of pass investments
 		public String[] checkForInvest(String fileName)throws IOException{
 			BufferedReader br;
 			String read = "";
@@ -183,5 +210,25 @@ public class FileInOut {
 			    }
 		
 			return returnString;
+		}
+		public void deleteUnderSubheading(String fileName,String checkFor) throws IOException{
+		    File file = new File(path + File.separator + "Accorns_Accounts" + File.separator + fileName); 
+		    File filePath = new File(path + File.separator + "Accorns_Accounts");
+		    File temp = File.createTempFile("temp-file-name", ".tmp", filePath);
+		    BufferedReader br = new BufferedReader(new FileReader( file ));
+		    PrintWriter pw =  new PrintWriter(new FileWriter( temp ));
+		    String line;
+		    
+		    while ((line = br.readLine()) != null) {
+		        pw.println(line);
+		        if(line.equals(checkFor)){
+		        	line = br.readLine();
+		        }
+		      
+		    }
+		    br.close();
+		    pw.close();
+		    file.delete();
+		    temp.renameTo(file);
 		}
 }

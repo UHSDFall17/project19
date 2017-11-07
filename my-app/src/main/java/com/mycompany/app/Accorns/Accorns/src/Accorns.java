@@ -11,6 +11,8 @@ public class Accorns {
 	private static AccountManagement user;
 	private static boolean loggedIn;
 	public static void main(String[] args)throws IOException {
+			FileInOut fileSystem = new FileInOut();
+			fileSystem.deleteUnderSubheading("TEST2.txt", "INVESTMENTS");
 			user = new AccountManagement();
 			signupLoginMenu();
 	}
@@ -63,7 +65,7 @@ public class Accorns {
 		while(loggedIn) {
 			System.out.println("Welcome " + user.getFirstName()
 								+ "\nUnInvested Balance: $" + user.retrevePreinvestedBalance()
-								+ "\nInvested Balance: $" + user.retreveInvestedBalance()
+								+ "\nInvested Amount: $" + user.retreveInvestedBalance()
 								+ "\nCurrent Portfolio Worth Per Stock: $" + user.returnPortfolioAverage()
 								+ "\nCurrent Entire Portfolio Worth: $" + user.retreveCalPortfolioWorth()
 								+ "\nProfit: $" + user.retreveProfit()
@@ -121,7 +123,7 @@ public class Accorns {
 			System.out.println("Portfolio Menu:\n\n"
 								+ "Welcome " + user.getFirstName() 
 								+ "\nUnInvested Balance: $" + user.retrevePreinvestedBalance()
-								+ "\nInvested Balance: $" + user.retreveInvestedBalance()
+								+ "\nInvested Amount: $" + user.retreveInvestedBalance()
 								+ "\nCurrent Portfolio Worth Per Stock: $" + user.returnPortfolioAverage()
 								+ "\nCurrent Entire Portfolio Worth: $" + user.retreveCalPortfolioWorth()
 								+ "\nProfit: $" + user.retreveProfit()
@@ -129,7 +131,7 @@ public class Accorns {
 			
 			System.out.println("1: Portfolio Breakdown\n"
 								+ "2: Investment History\n"
-								+ "3: Portfolio Menu\n"
+								+ "3: Cash Out Portfolio\n"
 								+ "4: Back To Main Menu");
 			
 			select = keys.nextLine();
@@ -143,14 +145,14 @@ public class Accorns {
 		
 				case "2":
 					clearConsole();
-					user.investmentHistory();
+					user.currentInvestmentHistory();
 					promptEnterKey();
 					clearConsole();
 					break;
 					
 				case "3":
 					clearConsole();
-					
+					user.cashOutPortfolio();
 					clearConsole();
 					break;
 					
@@ -159,7 +161,6 @@ public class Accorns {
 					inMenu = false;
 					clearConsole();
 					break;
-					
 				default:
 					System.out.println("Sorry, that was not an option\nPlease try again\n");
 					break;
