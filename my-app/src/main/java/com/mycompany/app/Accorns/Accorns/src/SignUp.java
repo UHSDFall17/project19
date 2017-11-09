@@ -19,7 +19,7 @@ public class SignUp {
 	 * UserName2
 	 * Password2
 	 */
-	
+
 	public boolean createUserName()throws IOException{
 		String tempInfo= "";
 		boolean isThere = true;

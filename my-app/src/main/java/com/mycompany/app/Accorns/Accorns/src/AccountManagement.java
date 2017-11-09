@@ -31,8 +31,8 @@ public class AccountManagement extends Users {
 		String[] investments = fileSystem.checkForInvest(getUserName() +".txt");
 		DecimalFormat df2 = new DecimalFormat("#.######");
 		
-		
-		return Double.parseDouble(df2.format(calChange(investedAmount, calPortfolioWorth())));
+		double amt = calChange(investedAmount, calPortfolioWorth());
+		return Double.parseDouble(df2.format(amt));
 	}
 	
 	public double retreveProfit()throws IOException{
@@ -165,9 +165,13 @@ public class AccountManagement extends Users {
 		return Double.parseDouble(df2.format(portfolioWorth));
 	}
 	
-	public double calChange(double orginalAmount, double newAmount) {
-		return((newAmount - orginalAmount)/ orginalAmount);
-	}
+	public double calChange(double originalAmount, double newAmount) {
+        if (originalAmount == 0) {
+            return 0;
+        } else {
+            return ((newAmount - originalAmount) / originalAmount);
+        }
+    }
 	public void investmentHistory() throws IOException{
 		String[] temp = fileSystem.checkForInvest(getUserName() + ".txt");
 		System.out.println("Investment History");

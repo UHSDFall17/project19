@@ -52,10 +52,9 @@ public class Accorns {
 			
 		
 		}while(!loggedIn);
-		
 		signedInMenu();
 	}
-	
+
 	public static void signedInMenu()throws IOException {
 		
 		String select = "";

@@ -233,6 +233,10 @@ public class Users {
 		   Scanner scanner = new Scanner(System.in);
 		   scanner.nextLine();
 		}
+	public void DisplayUserInfo(){
+		System.out.println("User Information");
+		System.out.println("Name: "+ getFirstName() + getLastName());
+	}
 	
 	
 }
