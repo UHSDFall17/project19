@@ -133,7 +133,7 @@ public class AccountManagement extends Users {
 		loadAmounts();
 		DecimalFormat df2 = new DecimalFormat("#.##");
 		String temp;
-		
+		System.out.println("Preinvested Balance: $" + preinvestedAmount);
 		System.out.println("Please Enter The Inital Dollar Amount You Would Like to invest from Your Account:");
 		while(true) {
 			temp = keys.nextLine();
@@ -259,7 +259,7 @@ public class AccountManagement extends Users {
 					content = date + " " + ogPricePer + " " + df2.format(newWorth);
 					
 					//Used to hold converted og value
-					newWorth = ((calCashOut + ogAmount) + ((calCashOut + ogAmount) * calChange(portfolio.portfolioWorth(), ogPricePer)));
+					newWorth = ((cashOutAmount) + ((cashOutAmount) * calChange(portfolio.portfolioWorth(), ogPricePer)));
 					System.out.println(newWorth);
 					fileSystem.addToSubheading(getUserName() + ".txt", content , "INVESTMENTS");
 					content = date + " " + new SimpleDateFormat("MM-dd-yyyy").format(new Date()) + " " + ogPricePer
@@ -305,19 +305,9 @@ public class AccountManagement extends Users {
 					//Checks for Double
 					if(0 <= Double.parseDouble(temp)) {
 					
-					System.out.println("Were here");
-					convert = Math.ceil(Double.parseDouble(temp));
+						addPurchases(temp, desc);
 					
-					if(convert == Double.parseDouble(temp))
-						convert2 = 0;
-					else
-						convert2 = convert - Double.parseDouble(temp);
-					
-					addMoney(Double.parseDouble(df2.format(convert2)), preinvestedAmount);
-					fileSystem.addToSubheading(getUserName() + ".txt", (new SimpleDateFormat("MM-dd-yyyy").format(new Date()) 
-											+ " " + df2.format(Double.parseDouble(temp)) + " "+ df2.format(convert2)) , "PURCHASES");
-					fileSystem.addToSubheading(getUserName() + ".txt", desc, "PURCHASES");
-					test2 = false;
+						test2 = false;
 					
 					}
 				}catch(NumberFormatException er)
@@ -352,6 +342,23 @@ public class AccountManagement extends Users {
 			}	
 			
 		}
+	}
+	
+	public void addPurchases(String temp, String desc)throws IOException {
+		
+		double convert = Math.ceil(Double.parseDouble(temp));
+		double convert2 = 0.0;
+		
+		if(convert == Double.parseDouble(temp))
+			convert2 = 0;
+		else
+			convert2 = convert - Double.parseDouble(temp);
+		
+		addMoney(Double.parseDouble(df2.format(convert2)), preinvestedAmount);
+		fileSystem.addToSubheading(getUserName() + ".txt", (new SimpleDateFormat("MM-dd-yyyy").format(new Date()) 
+								+ " " + df2.format(Double.parseDouble(temp)) + " "+ df2.format(convert2)) , "PURCHASES");
+		fileSystem.addToSubheading(getUserName() + ".txt", desc, "PURCHASES");
+	
 	}
 	
 	public boolean logOut() {

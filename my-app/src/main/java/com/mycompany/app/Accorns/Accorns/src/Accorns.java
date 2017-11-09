@@ -64,7 +64,7 @@ public class Accorns {
 		Scanner keys = new Scanner(System.in);
 		while(loggedIn) {
 			System.out.println("Welcome " + user.getFirstName()
-								+ "\nUnInvested Balance: $" + user.retrevePreinvestedBalance()
+								+ "\nPreinvested Balance: $" + user.retrevePreinvestedBalance()
 								+ "\nInvested Amount: $" + user.retreveInvestedBalance()
 								+ "\nCurrent Portfolio Worth Per Stock: $" + user.returnPortfolioAverage()
 								+ "\nCurrent Entire Portfolio Worth: $" + user.retreveCalPortfolioWorth()
