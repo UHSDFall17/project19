@@ -12,7 +12,7 @@ public class Accorns {
 	private static boolean loggedIn;
 	public static void main(String[] args)throws IOException {
 			FileInOut fileSystem = new FileInOut();
-			fileSystem.deleteUnderSubheading("TEST2.txt", "INVESTMENTS");
+			fileSystem.writeToFile("TEST.txt", "IT WORKED");
 			user = new AccountManagement();
 			signupLoginMenu();
 	}
@@ -71,10 +71,12 @@ public class Accorns {
 								+ "\nProfit: $" + user.retreveProfit()
 								+ "\nProfit Increase Percentage: %" + user.retreveProfitPercent());
 			
-			System.out.println("1: Add To Money Account\n"
-								+ "2: Invest Money\n"
-								+ "3: Portfolio Menu\n"
-								+ "4: Log Out");
+			System.out.println("1: Add To Money Account From Bank\n"
+								+ "2: Add Purchases From Card\n"
+								+ "3: Invest Money\n"
+								+ "4: Sell Stocks\n"
+								+ "5: Portfolio Menu\n"
+								+ "6: Log Out");
 			
 			select = keys.nextLine();
 			switch(select) {
@@ -87,18 +89,30 @@ public class Accorns {
 		
 				case "2":
 					clearConsole();
-					user.invest();
+					user.addPurchases();
 					promptEnterKey();
 					clearConsole();
 					break;
 					
 				case "3":
 					clearConsole();
-					portfolioMenu();
+					user.invest();
 					clearConsole();
 					break;
 					
 				case "4":
+					clearConsole();
+					user.cashOutPortfolio();
+					clearConsole();
+					break;
+				
+				case "5":
+					clearConsole();
+					portfolioMenu();
+					clearConsole();
+					break;
+				
+				case "6":
 					clearConsole();
 					loggedIn = user.logOut();
 					System.out.println("Log out Successful!");
@@ -130,8 +144,8 @@ public class Accorns {
 								+ "\nProfit Increase Percentage: %" + user.retreveProfitPercent());
 			
 			System.out.println("1: Portfolio Breakdown\n"
-								+ "2: Investment History\n"
-								+ "3: Cash Out Portfolio\n"
+								+ "2: Current Investment History\n"
+								+ "3: Sold Investment History\n"
 								+ "4: Back To Main Menu");
 			
 			select = keys.nextLine();
@@ -152,7 +166,7 @@ public class Accorns {
 					
 				case "3":
 					clearConsole();
-					user.cashOutPortfolio();
+					//user.cashOutPortfolio();
 					clearConsole();
 					break;
 					

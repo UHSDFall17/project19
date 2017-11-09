@@ -39,17 +39,16 @@ public class FileInOut {
 		}
 		
 		//appends to the end of a file, requires file name, not file type
-		public boolean writeToFile(String fileName, String content) {
+		public void writeToFile(String fileName, String content)throws IOException {
+			    File file = new File(path + File.separator + "Accorns_Accounts" + File.separator + fileName);
+			    try {
+			        PrintWriter out = new PrintWriter(new BufferedWriter(new FileWriter(file, true)));
+			        out.println(content);
+			        out.close();
+			    } catch (IOException e) {
+			    }
+				
 			
-			try(FileWriter fw = new FileWriter(path + File.separator + "Accorns_Accounts" + File.separator + fileName, true);
-				    BufferedWriter bw = new BufferedWriter(fw);
-				    PrintWriter out = new PrintWriter(bw))
-				{
-				    out.println(content);
-				} catch (IOException e) {
-				    
-				}
-			return true;
 				
 		}
 		//changes info for userInfo file-Make sure to include the old string, including the identifier and amount
@@ -75,28 +74,24 @@ public class FileInOut {
 		
 		public void addToSubheading(String fileName, String content, String checkFor) throws IOException{
 		    File file = new File(path + File.separator + "Accorns_Accounts" + File.separator + fileName); 
-		    File filePath = new File(path + File.separator + "Accorns_Accounts");
-		    File temp = File.createTempFile("temp-file-name", ".txt", filePath);
 		    BufferedReader br = new BufferedReader(new FileReader( file ));
-		    PrintWriter pw =  new PrintWriter(new FileWriter( temp ));
 		    String line;
+		    String lineToFile = "";
 		    
 		    while ((line = br.readLine()) != null) {
-		        pw.println(line);
+		        lineToFile += line + System.lineSeparator();
+		        //Skips over to delete
 		        if(line.equals(checkFor)){
 		        	
-		            pw.println(content);
+		        	lineToFile += content + System.lineSeparator();
 		        }
 		      
 		    }
+		    
+		    FileWriter writer = new FileWriter(file);
+			writer.write(lineToFile);
 		    br.close();
-		    pw.close();
-		    br.close();
-		    pw.close();
-		    System.out.println(file.exists());
-		    System.out.println(file.getAbsolutePath());
-		    System.out.println(file.delete());
-		    System.out.println(temp.renameTo(file));
+		    writer.close();
 		}
 		
 		//checkFile checks to see if file is there and creates one if needed
@@ -176,14 +171,19 @@ public class FileInOut {
 		                }while((read != null));
 		            	
 		            	String[] wholeFile = hold.split(" ");
-		            	for(int i = 0; i < wholeFile.length && test; i ++) {
+		            	for(int i = 0; i < wholeFile.length || test; i ++) {
 		            		if(wholeFile[i].equals("INVESTMENTS")) {
 		            			countFinal = i;
 		            			test = false;
 		            		}
+		       
 		            		
 		            		
 		            	}
+		            
+		            	//if(wholeFile.length - (countFinal + 2) < 0)
+		            		//return null;
+		            	
 		            	String[] finalData = new String[wholeFile.length - (countFinal + 2)];
 		            	//countFinal incremented to move pass INVESTMENTS
 		            	countFinal ++;
@@ -204,6 +204,7 @@ public class FileInOut {
 		            // TODO Auto-generated catch block
 		            e.printStackTrace();
 		        }
+		        br.close();
 			 } catch (FileNotFoundException e) {
 			        // TODO Auto-generated catch block
 			        e.printStackTrace();
@@ -213,22 +214,20 @@ public class FileInOut {
 		}
 		public void deleteUnderSubheading(String fileName,String checkFor) throws IOException{
 		    File file = new File(path + File.separator + "Accorns_Accounts" + File.separator + fileName); 
-		    File filePath = new File(path + File.separator + "Accorns_Accounts");
-		    File temp = File.createTempFile("temp-file-name", ".tmp", filePath);
 		    BufferedReader br = new BufferedReader(new FileReader( file ));
-		    PrintWriter pw =  new PrintWriter(new FileWriter( temp ));
 		    String line;
-		    
+		    String lineToFile = "";
 		    while ((line = br.readLine()) != null) {
-		        pw.println(line);
+		        lineToFile += line + System.lineSeparator();
+		        //Skips over to delete
 		        if(line.equals(checkFor)){
 		        	line = br.readLine();
 		        }
 		      
 		    }
+		    FileWriter writer = new FileWriter(file);
+			writer.write(lineToFile);
 		    br.close();
-		    pw.close();
-		    file.delete();
-		    temp.renameTo(file);
+		    writer.close();
 		}
 }

@@ -12,8 +12,10 @@ public class AccountManagement extends Users {
 	private double profit;
 	private double portfolioWorth;
 	private double profitPer;
+	DecimalFormat df2;
 	AccountManagement() throws IOException{
 		super();
+		df2 = new DecimalFormat("#.##");
 		profit = 0;
 		investedAmount = 0;
 		portfolioWorth = 0;
@@ -21,12 +23,23 @@ public class AccountManagement extends Users {
 		fileSystem = new FileInOut();
 	}
 	
-	public double retrevePreinvestedBalance() {
+	public double retrevePreinvestedBalance()throws IOException {
+
+		
 		return (preinvestedAmount = Double.parseDouble(fileSystem.checkForInFile(getUserName() + ".txt", "PREBALANCE")));
 	}
 	
-	public double retreveInvestedBalance() {
-		return (investedAmount = Double.parseDouble(fileSystem.checkForInFile(getUserName() + ".txt", "INVESTEDBAL")));
+	public double retreveInvestedBalance()throws IOException {
+		String[] investments = fileSystem.checkForInvest(getUserName() +".txt");
+		DecimalFormat df2 = new DecimalFormat("#.##");
+		investedAmount = 0.0;
+		
+		for(int i = 1; i < investments.length; i++) {
+			
+			investedAmount +=  Double.parseDouble(investments[i+1]);
+			i += 2;
+		}
+		return Double.parseDouble(df2.format(investedAmount));
 	}
 	
 	public double retreveCalPortfolioWorth()throws IOException {
@@ -39,6 +52,8 @@ public class AccountManagement extends Users {
 	}
 	
 	public double retreveProfit()throws IOException{
+		if(fileSystem.checkForInvest(getUserName() +".txt") == null)
+			return 0.0;
 		String[] investments = fileSystem.checkForInvest(getUserName() +".txt");
 		DecimalFormat df2 = new DecimalFormat("#.##");
 		profit = 0;
@@ -52,7 +67,7 @@ public class AccountManagement extends Users {
 	}
 	
 	
-	public void loadAmounts() {
+	public void loadAmounts() throws IOException {
 		retrevePreinvestedBalance();
 		retreveInvestedBalance();
 	}
@@ -157,6 +172,8 @@ public class AccountManagement extends Users {
 	}
 	
 	public double calPortfolioWorth() throws IOException {
+		if(fileSystem.checkForInvest(getUserName() +".txt") == null)
+			return 0.0;
 		String[] investments = fileSystem.checkForInvest(getUserName() +".txt");
 		DecimalFormat df2 = new DecimalFormat("#.##");
 		portfolioWorth = 0;
@@ -226,44 +243,115 @@ public class AccountManagement extends Users {
 				String date = investments[i];
 				double ogPricePer = Double.parseDouble(investments[i+1]);
 				double ogAmount = Double.parseDouble(investments[i+2]);
-				double worth = Double.parseDouble(df2.format(ogAmount + (ogPricePer * calChange(ogPricePer, portfolio.portfolioWorth()))));
-				System.out.println(i);
-				System.out.println(ogPricePer);
-				System.out.println(ogAmount);
-				System.out.println(worth);
+				double worth = Double.parseDouble(df2.format(ogAmount + (ogAmount * calChange(ogPricePer, portfolio.portfolioWorth()))));
+				
 				calCashOut -= worth;
-				System.out.println(calCashOut);
+				
 				
 				fileSystem.deleteUnderSubheading(getUserName() + ".txt", "INVESTMENTS");
-				//101.82
+				
 				if(calCashOut < 0) {
 					//This is used to hold converted og value
-					double newWorth = (-calCashOut + ((-calCashOut)* calChange(portfolio.portfolioWorth(), ogPricePer)));
+					double newWorth = ((-calCashOut)+ (-calCashOut * calChange(portfolio.portfolioWorth(), ogPricePer)));
 					
 					System.out.println(newWorth);
 					System.out.println(newWorth + (newWorth * calChange(ogPricePer, portfolio.portfolioWorth())));
 					content = date + " " + ogPricePer + " " + df2.format(newWorth);
-					System.out.println(content);
 					
 					//Used to hold converted og value
 					newWorth = ((calCashOut + ogAmount) + ((calCashOut + ogAmount) * calChange(portfolio.portfolioWorth(), ogPricePer)));
+					System.out.println(newWorth);
 					fileSystem.addToSubheading(getUserName() + ".txt", content , "INVESTMENTS");
 					content = date + " " + new SimpleDateFormat("MM-dd-yyyy").format(new Date()) + " " + ogPricePer
 							+ " " + portfolio.portfolioWorth() + " " +  df2.format(newWorth) + " "
 							+ df2.format(calCashOut + worth);
-					System.out.println(content);
+					
 				}
-				else
+				else {
+					
 					content = date + " " + new SimpleDateFormat("MM-dd-yyyy").format(new Date()) + " " + ogPricePer
-							+ " " + portfolio.portfolioWorth() + " " +  ogAmount + " " + worth;
-				System.out.println(content);
+							+ " " + portfolio.portfolioWorth() + " " +  df2.format(ogAmount) + " " + df2.format(worth);
+				}
 					fileSystem.addToSubheading(getUserName() + ".txt", content, "PAST_INVESTMENTS");
 				
 					i +=2;
 			}
-			//addMoney(cashOutAmount, preinvestedAmount);
-			//addMoneyInv(-cashOutAmount, investedAmount);
+			addMoney(cashOutAmount, preinvestedAmount);
+			addMoneyInv(-cashOutAmount, investedAmount);
 		
+	}
+	
+	public void addPurchases() throws IOException {
+		Scanner keys = new Scanner(System.in);
+		String desc = "";
+		String temp = "";
+		double convert = 0.0;
+		double convert2 = 0.0;
+		boolean test = true;
+		boolean test2= true;
+		
+		while(test) {
+			System.out.println("Please add the description of the purchase\nType \"Exit\" to return to the home menu.");
+			
+			temp = keys.nextLine();
+			if(temp.toUpperCase().equals("EXIT"))
+				return;
+			
+			desc = temp;
+			System.out.println("Please Enter the Price of the purchase:");
+			while(test2) {
+				temp = keys.nextLine();
+				try {
+					//Checks for Double
+					if(0 <= Double.parseDouble(temp)) {
+					
+					System.out.println("Were here");
+					convert = Math.ceil(Double.parseDouble(temp));
+					
+					if(convert == Double.parseDouble(temp))
+						convert2 = 0;
+					else
+						convert2 = convert - Double.parseDouble(temp);
+					
+					addMoney(Double.parseDouble(df2.format(convert2)), preinvestedAmount);
+					fileSystem.addToSubheading(getUserName() + ".txt", (new SimpleDateFormat("MM-dd-yyyy").format(new Date()) 
+											+ " " + df2.format(Double.parseDouble(temp)) + " "+ df2.format(convert2)) , "PURCHASES");
+					fileSystem.addToSubheading(getUserName() + ".txt", desc, "PURCHASES");
+					test2 = false;
+					
+					}
+				}catch(NumberFormatException er)
+				{  }
+				
+				if(temp.toUpperCase().equals("EXIT"))
+					return;
+				
+				if(test2)
+					System.out.println("Make sure it is a positive amount, please try again!");
+			
+			}
+			
+			
+			
+			boolean whileCheck = true;
+			
+			while(whileCheck) {
+				System.out.println("Would you like to add another purchase?\ny/n");
+				temp = keys.nextLine();
+				
+				if(temp.toUpperCase().equals("Y")) {
+					test2 = true;
+					whileCheck = false;
+				}
+				else if(temp.toUpperCase().equals("N")) {
+					test = false;
+					whileCheck = false;
+				}
+				else
+					System.out.println("That was not an option, please try again");
+			}	
+			
+		}
 	}
 	
 	public boolean logOut() {

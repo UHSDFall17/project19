@@ -58,14 +58,9 @@ public class Users {
 		//redundecny to ensure that everything is loaded
 		loadUserInfo(userName);
 		
-		//initizes the banking in file
-		initBalance();
-		
 		//creates the portfolio and loads the portfolio
-		portfolio.checkForPortfolio(userName);
+		initFileBalance();
 		
-		//Header to declare in file when investments start
-		fileSystem.writeToFile(userName + ".txt", "INVESTMENTS");
 		isLoggedIn = true;
 		return isLoggedIn;
 	}
@@ -179,8 +174,8 @@ public class Users {
 		
 	}
 	
-	//initilzes the bank 
-	public void initBalance() {
+	//initilzes the Balances
+	public void initFileBalance()throws IOException {
 		DecimalFormat df2 = new DecimalFormat("#.##");
 		String temp;
 		System.out.println("Please Enter The Inital Dollar Amount You Would Like to Add to Your Account:");
@@ -189,8 +184,11 @@ public class Users {
 			try {
 				//Checks for integer
 				if(0 <= Double.parseDouble(temp)) {
+					portfolio.checkForPortfolio(userName);
 					fileSystem.writeToFile(getUserName() + ".txt","PREBALANCE " + df2.format(Double.parseDouble(temp)));
 					fileSystem.writeToFile(getUserName() + ".txt", "INVESTEDBAL " + df2.format(0));
+					fileSystem.writeToFile(getUserName() + ".txt", "HEADERS");
+					fileSystem.writeToFile(getUserName() + ".txt", "PURCHASES");
 					fileSystem.writeToFile(getUserName() + ".txt", "PAST_INVESTMENTS");
 					fileSystem.writeToFile(getUserName() + ".txt", "INVESTMENTS");
 					return;
