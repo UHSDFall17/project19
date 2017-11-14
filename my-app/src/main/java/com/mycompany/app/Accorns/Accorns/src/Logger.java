@@ -139,6 +139,7 @@ public class Logger {
 	        } catch (IOException e) {
 	            e.printStackTrace();
 	        }
+			System.out.println(isThere);
 			
 			return isThere;
 		}

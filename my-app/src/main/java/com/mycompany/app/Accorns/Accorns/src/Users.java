@@ -106,6 +106,24 @@ public class Users {
 		
 	}
 	
+	public void changePassword() {
+		Scanner keys = new Scanner(System.in);
+		boolean test = false;
+		String temp = "";
+		while (!test) {
+			System.out.println("Please enter your original password");
+			temp = keys.nextLine();
+			test = log.doLogIn("Users.txt" , getUserName(), temp);
+			if(!test)
+				System.out.println("Sorry, that was the wrong password, please try again");
+		}
+		
+		System.out.println("Please enter you new password");
+		try {
+			fileSystem.replaceInFile("Users.txt", Integer.toString(keys.nextLine().hashCode()), Integer.toString(temp.hashCode()));
+		}catch(IOException e){}
+	}
+	
 	//clears out loaded user info when logging out
 	public void clearUserInfo() {
 		userName = "";

@@ -75,7 +75,8 @@ public class Accorns {
 								+ "3: Invest Money\n"
 								+ "4: Sell Stocks\n"
 								+ "5: Portfolio Menu\n"
-								+ "6: Log Out");
+								+ "6: Account Menu\n"
+								+ "7: Log Out");
 			
 			select = keys.nextLine();
 			switch(select) {
@@ -112,6 +113,12 @@ public class Accorns {
 					break;
 				
 				case "6":
+					clearConsole();
+					accountMenu();
+					clearConsole();
+					break;
+				
+				case "7":
 					clearConsole();
 					loggedIn = user.logOut();
 					System.out.println("Log out Successful!");
@@ -171,6 +178,51 @@ public class Accorns {
 					break;
 					
 				case "4":
+					clearConsole();
+					inMenu = false;
+					clearConsole();
+					break;
+				default:
+					System.out.println("Sorry, that was not an option\nPlease try again\n");
+					break;
+			}
+		}
+	}
+	
+	public static void accountMenu() throws IOException{
+		boolean inMenu = true;
+		Scanner keys = new Scanner(System.in);
+		String select;
+		while(inMenu) {
+			System.out.println("Account Menu:\n\n");
+			
+			System.out.println("1: Change Password\n"
+								+ "2: Back To Main Menu");
+			
+			select = keys.nextLine();
+			switch(select) {
+				case "1":
+					clearConsole();
+					user.changePassword();
+					promptEnterKey();
+					clearConsole();
+					break;
+		
+				/*case "2":
+					clearConsole();
+					user.currentInvestmentHistory();
+					promptEnterKey();
+					clearConsole();
+					break;
+					
+				case "3":
+					clearConsole();
+					user.pastInvestmentHistory();
+					promptEnterKey();
+					clearConsole();
+					break;*/
+					
+				case "2":
 					clearConsole();
 					inMenu = false;
 					clearConsole();

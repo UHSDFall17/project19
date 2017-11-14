@@ -11,7 +11,6 @@ public class AccountManagement extends Users {
 	private double investedAmount;
 	private double profit;
 	private double portfolioWorth;
-	private double profitPer;
 	DecimalFormat df2;
 	AccountManagement() throws IOException{
 		super();
@@ -19,7 +18,6 @@ public class AccountManagement extends Users {
 		profit = 0;
 		investedAmount = 0;
 		portfolioWorth = 0;
-		profitPer = 0;
 		fileSystem = new FileInOut();
 	}
 	
@@ -297,8 +295,6 @@ public class AccountManagement extends Users {
 		Scanner keys = new Scanner(System.in);
 		String desc = "";
 		String temp = "";
-		double convert = 0.0;
-		double convert2 = 0.0;
 		boolean test = true;
 		boolean test2= true;
 		
