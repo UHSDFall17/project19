@@ -212,6 +212,72 @@ public class FileInOut {
 		
 			return returnString;
 		}
+		public String[] checkForPastInfo(String fileName, String infoFrom, String infoTo)throws IOException{
+			BufferedReader br;
+			String read = "";
+			String hold = "";
+			//used to return something
+			String[] returnString = new String[1];
+			boolean test = true;
+			boolean test1 = true;
+			int countFinal = 0;
+			
+			try {
+		        
+				br = new BufferedReader(new FileReader(path + File.separator + "Accorns_Accounts" + File.separator + fileName));
+		        
+		        try {
+		            
+		            do{
+		            		
+		            		read = br.readLine();
+		            		hold = hold + read + " ";
+		            		if(read.equals(infoTo))
+		            			test1 = false;
+		                }while((read != null && test1));
+		            	
+		            	String[] wholeFile = hold.split(" ");
+		            	for(int i = 0; i < wholeFile.length || test; i ++) {
+		            		if(wholeFile[i].equals(infoFrom)) {
+		            			countFinal = i;
+		            			test = false;
+		            		}
+		       
+		            		
+		            		
+		            	}
+		            
+		            	//if(wholeFile.length - (countFinal + 2) < 0)
+		            		//return null;
+		            	
+		            	String[] finalData = new String[wholeFile.length - (countFinal + 2)];
+		            	//countFinal incremented to move pass INVESTMENTS
+		            	countFinal ++;
+		            	for(int i = 0; countFinal < wholeFile.length - 1; i ++) {
+		            		
+		            		finalData[i] = wholeFile[countFinal];
+		            		
+		            		countFinal++;
+		            		
+		            	}
+		              
+		            	
+
+		            
+		            br.close();
+		            return finalData;
+		        } catch (IOException e) {
+		            // TODO Auto-generated catch block
+		            e.printStackTrace();
+		        }
+		        br.close();
+			 } catch (FileNotFoundException e) {
+			        // TODO Auto-generated catch block
+			        e.printStackTrace();
+			    }
+		
+			return returnString;
+		}
 		public void deleteUnderSubheading(String fileName,String checkFor) throws IOException{
 		    File file = new File(path + File.separator + "Accorns_Accounts" + File.separator + fileName); 
 		    BufferedReader br = new BufferedReader(new FileReader( file ));

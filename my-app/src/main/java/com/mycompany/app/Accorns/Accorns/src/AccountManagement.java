@@ -31,7 +31,6 @@ public class AccountManagement extends Users {
 	
 	public double retreveInvestedBalance()throws IOException {
 		String[] investments = fileSystem.checkForInvest(getUserName() +".txt");
-		DecimalFormat df2 = new DecimalFormat("#.##");
 		investedAmount = 0.0;
 		
 		for(int i = 1; i < investments.length; i++) {
@@ -205,7 +204,20 @@ public class AccountManagement extends Users {
 			i += 2;
 		}
 	}
-	
+	//Date invested----Date cashed Out-----Worth Per stock when bought-------Worth per stock now-------Amount invested-----Amount Worth Now
+	public void pastInvestmentHistory() throws IOException{
+		String[] temp = fileSystem.checkForPastInfo(getUserName() + ".txt","PAST_INVESTMENTS", "INVESTMENTS");
+		System.out.println("Past Investment History");
+		for(int i = 0; i < temp.length; i++) {
+			System.out.println("Investment Date: " + temp[i]
+								+ "\n	Date Stock Sold: " + temp[i+1]
+								+ "\n		Worth Per stock When Bought: $" + temp[i + 2] 
+								+ "\n			Worth per stock when sold: $" + temp[i + 3]
+								+ "\n				Amount Invested: $" + temp[i +4] 
+								+ "\n					Amount worth when sold: $" + temp [i + 5] + "\n");
+			i += 5;
+		}
+	}
 	public void cashOutPortfolio()throws IOException {
 		Scanner keys = new Scanner(System.in);
 		double cashOutAmount = 0.0;

@@ -12,7 +12,6 @@ public class Accorns {
 	private static boolean loggedIn;
 	public static void main(String[] args)throws IOException {
 			FileInOut fileSystem = new FileInOut();
-			fileSystem.writeToFile("TEST.txt", "IT WORKED");
 			user = new AccountManagement();
 			signupLoginMenu();
 	}
@@ -166,7 +165,8 @@ public class Accorns {
 					
 				case "3":
 					clearConsole();
-					//user.cashOutPortfolio();
+					user.pastInvestmentHistory();
+					promptEnterKey();
 					clearConsole();
 					break;
 					
