@@ -43,17 +43,10 @@ public class AccountManagement extends Users {
 		return (calPortfolioWorth());
 	}
 	public double retreveProfitPercent()throws IOException{
-<<<<<<< HEAD
-		String[] investments = fileSystem.checkForInvest(getUserName() +".txt");
+
 		DecimalFormat df2 = new DecimalFormat("#.######");
-		
-		double amt = calChange(investedAmount, calPortfolioWorth());
-		return Double.parseDouble(df2.format(amt));
-=======
-		DecimalFormat df2 = new DecimalFormat("#.##");
-		
+
 		return Double.parseDouble(df2.format(100*calChange(investedAmount, calPortfolioWorth())));
->>>>>>> 0cee67742afdb47602dcb4a9c6b744a04313b60f
 	}
 	
 	public double retreveProfit()throws IOException{
@@ -191,7 +184,7 @@ public class AccountManagement extends Users {
 		
 		return Double.parseDouble(df2.format(portfolioWorth));
 	}
-	
+
 	public double calChange(double originalAmount, double newAmount) {
         if (originalAmount == 0) {
             return 0;
