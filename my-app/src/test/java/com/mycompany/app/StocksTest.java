@@ -25,6 +25,15 @@ public class StocksTest {
 		String name = stock.nameOf("AAPL");
 		assertEquals("Apple Inc.", name);
 	}
+	@Test
+    public void testReadHtml(){
+        Stocks stock = new Stocks();
+        String symbol = "AAPL";
+       String html = stock.readHTML(symbol);
+       assertNotSame(null, html);
+
+
+    }
 
 
 }
