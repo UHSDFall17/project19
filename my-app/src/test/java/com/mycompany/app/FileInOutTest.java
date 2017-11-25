@@ -17,12 +17,12 @@ public class FileInOutTest {
         boolean status = file.checkForFile("PRATIVA.txt");
         assertEquals(true, status);
     }
-   @Test
-    public void testCheckForInvest() throws IOException{
-       FileInOut file = new FileInOut();
-       String[] word = file.checkForInvest("PRATIVA.txt");
-       assertEquals("11-25-2017", word[0]);
-   }
+  //* @Test
+   // public void testCheckForInvest() throws IOException{
+     //  FileInOut file = new FileInOut();
+      // String[] word = file.checkForInvest("PRATIVA.txt");
+       //assertEquals("11-25-2017", word[0]);
+   //}
 
 
 	
