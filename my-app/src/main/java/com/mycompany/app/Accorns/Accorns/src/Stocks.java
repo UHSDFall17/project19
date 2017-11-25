@@ -1,4 +1,3 @@
-import static sun.java2d.cmm.ColorTransform.In;
 
 public class Stocks {
 
