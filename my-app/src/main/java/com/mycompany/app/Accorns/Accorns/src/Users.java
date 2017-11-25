@@ -14,9 +14,10 @@ public class Users {
 	public FileInOut fileSystem;
 	protected Portfolio portfolio;
 	Scanner keys = new Scanner(System.in);
+	
 	Users()throws IOException {
 		fileSystem = new FileInOut();
-		checkForFile("Users.txt");
+		fileSystem.checkForFile("Users.txt");
 		log = new Logger();
 		
 		userName = "";
@@ -28,7 +29,7 @@ public class Users {
 		portfolio = new Portfolio();
 	}
 	Users(String user)throws IOException {
-		checkForFile("Users.txt");
+		fileSystem.checkForFile("Users.txt");
 		log = new Logger();
 		userName = user;
 		userEmail = "";
@@ -57,14 +58,9 @@ public class Users {
 		//redundecny to ensure that everything is loaded
 		loadUserInfo(userName);
 		
-		//initizes the banking in file
-		initBank();
-		
 		//creates the portfolio and loads the portfolio
-		portfolio.checkForPortfolio(userName);
+		initFileBalance();
 		
-		//Header to declare in file when investments start
-		fileSystem.writeToFile(userName + ".txt", "INVESTMENTS");
 		isLoggedIn = true;
 		return isLoggedIn;
 	}
@@ -82,17 +78,12 @@ public class Users {
 			portfolio.checkForPortfolio(userName);
 			return log.checkLogIn();
 		}
-		return false;
+		else
+			return false;
 		
 	}
 	
-	//checkForFile checks to see if file is there and creates one if needed
-	public void checkForFile(String fileName) throws IOException {
-		File file = new File(fileName);
-		if(!file.exists()) {
-			file.createNewFile();
-		}
-	}
+	
 	
 	/*Example of user text file
 	 * First name
@@ -113,6 +104,24 @@ public class Users {
             e.printStackTrace();
         }
 		
+	}
+	
+	public void changePassword() {
+		Scanner keys = new Scanner(System.in);
+		boolean test = false;
+		String temp = "";
+		while (!test) {
+			System.out.println("Please enter your original password");
+			temp = keys.nextLine();
+			test = log.doLogIn("Users.txt" , getUserName(), temp);
+			if(!test)
+				System.out.println("Sorry, that was the wrong password, please try again");
+		}
+		
+		System.out.println("Please enter you new password");
+		try {
+			fileSystem.replaceInFile("Users.txt", Integer.toString(keys.nextLine().hashCode()), Integer.toString(temp.hashCode()));
+		}catch(IOException e){}
 	}
 	
 	//clears out loaded user info when logging out
@@ -183,8 +192,8 @@ public class Users {
 		
 	}
 	
-	//initilzes the bank 
-	public void initBank() {
+	//initilzes the Balances
+	public void initFileBalance()throws IOException {
 		DecimalFormat df2 = new DecimalFormat("#.##");
 		String temp;
 		System.out.println("Please Enter The Inital Dollar Amount You Would Like to Add to Your Account:");
@@ -193,8 +202,13 @@ public class Users {
 			try {
 				//Checks for integer
 				if(0 <= Double.parseDouble(temp)) {
+					portfolio.checkForPortfolio(userName);
 					fileSystem.writeToFile(getUserName() + ".txt","PREBALANCE " + df2.format(Double.parseDouble(temp)));
 					fileSystem.writeToFile(getUserName() + ".txt", "INVESTEDBAL " + df2.format(0));
+					fileSystem.writeToFile(getUserName() + ".txt", "HEADERS");
+					fileSystem.writeToFile(getUserName() + ".txt", "PURCHASES");
+					fileSystem.writeToFile(getUserName() + ".txt", "PAST_INVESTMENTS");
+					fileSystem.writeToFile(getUserName() + ".txt", "INVESTMENTS");
 					return;
 				}
 			}catch(NumberFormatException er)

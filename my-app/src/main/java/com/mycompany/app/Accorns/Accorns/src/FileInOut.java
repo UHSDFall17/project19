@@ -39,17 +39,16 @@ public class FileInOut {
 		}
 		
 		//appends to the end of a file, requires file name, not file type
-		public boolean writeToFile(String fileName, String content) {
+		public void writeToFile(String fileName, String content)throws IOException {
+			    File file = new File(path + File.separator + "Accorns_Accounts" + File.separator + fileName);
+			    try {
+			        PrintWriter out = new PrintWriter(new BufferedWriter(new FileWriter(file, true)));
+			        out.println(content);
+			        out.close();
+			    } catch (IOException e) {
+			    }
+				
 			
-			try(FileWriter fw = new FileWriter(path + File.separator + "Accorns_Accounts" + File.separator + fileName, true);
-				    BufferedWriter bw = new BufferedWriter(fw);
-				    PrintWriter out = new PrintWriter(bw))
-				{
-				    out.println(content);
-				} catch (IOException e) {
-				    
-				}
-			return true;
 				
 		}
 		//changes info for userInfo file-Make sure to include the old string, including the identifier and amount
@@ -71,6 +70,28 @@ public class FileInOut {
 			reader.close();
 			return true;
 			
+		}
+		
+		public void addToSubheading(String fileName, String content, String checkFor) throws IOException{
+		    File file = new File(path + File.separator + "Accorns_Accounts" + File.separator + fileName); 
+		    BufferedReader br = new BufferedReader(new FileReader( file ));
+		    String line;
+		    String lineToFile = "";
+		    
+		    while ((line = br.readLine()) != null) {
+		        lineToFile += line + System.lineSeparator();
+		        //Skips over to delete
+		        if(line.equals(checkFor)){
+		        	
+		        	lineToFile += content + System.lineSeparator();
+		        }
+		      
+		    }
+		    
+		    FileWriter writer = new FileWriter(file);
+			writer.write(lineToFile);
+		    br.close();
+		    writer.close();
 		}
 		
 		//checkFile checks to see if file is there and creates one if needed
@@ -127,6 +148,7 @@ public class FileInOut {
 			return "-1";
 		}
 		
+		//Change for inclusion of pass investments
 		public String[] checkForInvest(String fileName)throws IOException{
 			BufferedReader br;
 			String read = "";
@@ -149,14 +171,19 @@ public class FileInOut {
 		                }while((read != null));
 		            	
 		            	String[] wholeFile = hold.split(" ");
-		            	for(int i = 0; i < wholeFile.length && test; i ++) {
+		            	for(int i = 0; i < wholeFile.length || test; i ++) {
 		            		if(wholeFile[i].equals("INVESTMENTS")) {
 		            			countFinal = i;
 		            			test = false;
 		            		}
+		       
 		            		
 		            		
 		            	}
+		            
+		            	//if(wholeFile.length - (countFinal + 2) < 0)
+		            		//return null;
+		            	
 		            	String[] finalData = new String[wholeFile.length - (countFinal + 2)];
 		            	//countFinal incremented to move pass INVESTMENTS
 		            	countFinal ++;
@@ -177,11 +204,96 @@ public class FileInOut {
 		            // TODO Auto-generated catch block
 		            e.printStackTrace();
 		        }
+		        br.close();
 			 } catch (FileNotFoundException e) {
 			        // TODO Auto-generated catch block
 			        e.printStackTrace();
 			    }
 		
 			return returnString;
+		}
+		public String[] checkForPastInfo(String fileName, String infoFrom, String infoTo)throws IOException{
+			BufferedReader br;
+			String read = "";
+			String hold = "";
+			//used to return something
+			String[] returnString = new String[1];
+			boolean test = true;
+			boolean test1 = true;
+			int countFinal = 0;
+			
+			try {
+		        
+				br = new BufferedReader(new FileReader(path + File.separator + "Accorns_Accounts" + File.separator + fileName));
+		        
+		        try {
+		            
+		            do{
+		            		
+		            		read = br.readLine();
+		            		hold = hold + read + " ";
+		            		if(read.equals(infoTo))
+		            			test1 = false;
+		                }while((read != null && test1));
+		            	
+		            	String[] wholeFile = hold.split(" ");
+		            	for(int i = 0; i < wholeFile.length || test; i ++) {
+		            		if(wholeFile[i].equals(infoFrom)) {
+		            			countFinal = i;
+		            			test = false;
+		            		}
+		       
+		            		
+		            		
+		            	}
+		            
+		            	//if(wholeFile.length - (countFinal + 2) < 0)
+		            		//return null;
+		            	
+		            	String[] finalData = new String[wholeFile.length - (countFinal + 2)];
+		            	//countFinal incremented to move pass INVESTMENTS
+		            	countFinal ++;
+		            	for(int i = 0; countFinal < wholeFile.length - 1; i ++) {
+		            		
+		            		finalData[i] = wholeFile[countFinal];
+		            		
+		            		countFinal++;
+		            		
+		            	}
+		              
+		            	
+
+		            
+		            br.close();
+		            return finalData;
+		        } catch (IOException e) {
+		            // TODO Auto-generated catch block
+		            e.printStackTrace();
+		        }
+		        br.close();
+			 } catch (FileNotFoundException e) {
+			        // TODO Auto-generated catch block
+			        e.printStackTrace();
+			    }
+		
+			return returnString;
+		}
+		public void deleteUnderSubheading(String fileName,String checkFor) throws IOException{
+		    File file = new File(path + File.separator + "Accorns_Accounts" + File.separator + fileName); 
+		    BufferedReader br = new BufferedReader(new FileReader( file ));
+		    String line;
+		    String lineToFile = "";
+		    while ((line = br.readLine()) != null) {
+		        lineToFile += line + System.lineSeparator();
+		        //Skips over to delete
+		        if(line.equals(checkFor)){
+		        	line = br.readLine();
+		        }
+		      
+		    }
+		    FileWriter writer = new FileWriter(file);
+			writer.write(lineToFile);
+		    br.close();
+		    writer.close();
 		}
 }

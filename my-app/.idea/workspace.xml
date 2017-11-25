@@ -12,7 +12,7 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name=".gitignore" pinned="false" current-in-tab="true">
+      <file leaf-file-name=".gitignore" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/mycompany/app/Accorns/.gitignore">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="36">
@@ -42,11 +42,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="AccountManagement.java" pinned="false" current-in-tab="false">
+      <file leaf-file-name="AccountManagement.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/mycompany/app/Accorns/Accorns/src/AccountManagement.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="2988">
-              <caret line="171" column="67" lean-forward="false" selection-start-line="171" selection-start-column="67" selection-end-line="171" selection-end-column="67" />
+            <state relative-caret-position="158">
+              <caret line="193" column="4" lean-forward="false" selection-start-line="193" selection-start-column="4" selection-end-line="193" selection-end-column="4" />
               <folding />
             </state>
           </provider>
@@ -57,7 +57,9 @@
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="36">
               <caret line="10" column="13" lean-forward="false" selection-start-line="10" selection-start-column="13" selection-end-line="10" selection-end-column="13" />
-              <folding />
+              <folding>
+                <marker date="1511629029758" expanded="true" signature="9446:9451" ph="{...}" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -67,7 +69,11 @@
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="36">
               <caret line="5" column="13" lean-forward="false" selection-start-line="5" selection-start-column="13" selection-end-line="5" selection-end-column="13" />
-              <folding />
+              <folding>
+                <marker date="1511629029758" expanded="false" signature="2890:2893" ph=" }" />
+                <marker date="1511629029758" expanded="true" signature="2930:3146" ph="{...}" />
+                <marker date="1511629029758" expanded="true" signature="3201:3435" ph="{...}" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -76,8 +82,19 @@
         <entry file="file://$PROJECT_DIR$/src/main/java/com/mycompany/app/Accorns/Accorns/src/Users.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="4050">
-              <caret line="237" column="69" lean-forward="false" selection-start-line="237" selection-start-column="69" selection-end-line="237" selection-end-column="69" />
-              <folding />
+              <caret line="251" column="69" lean-forward="false" selection-start-line="251" selection-start-column="69" selection-end-line="251" selection-end-column="69" />
+              <folding>
+                <marker date="1511629029990" expanded="true" signature="5931:6088" ph="{...}" />
+                <marker date="1511629029990" expanded="false" signature="6142:6147" ph=" { " />
+                <marker date="1511629029990" expanded="false" signature="6164:6167" ph=" }" />
+                <marker date="1511629029990" expanded="false" signature="6218:6223" ph=" { " />
+                <marker date="1511629029990" expanded="false" signature="6239:6242" ph=" }" />
+                <marker date="1511629029990" expanded="false" signature="6289:6294" ph=" { " />
+                <marker date="1511629029990" expanded="false" signature="6311:6314" ph=" }" />
+                <marker date="1511629029990" expanded="false" signature="6364:6369" ph=" { " />
+                <marker date="1511629029990" expanded="false" signature="6385:6388" ph=" }" />
+                <marker date="1511629029990" expanded="true" signature="6416:6493" ph="{...}" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -85,9 +102,11 @@
       <file leaf-file-name="Accorns.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/mycompany/app/Accorns/Accorns/src/Accorns.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1098">
-              <caret line="68" column="0" lean-forward="false" selection-start-line="68" selection-start-column="0" selection-end-line="68" selection-end-column="0" />
-              <folding />
+            <state relative-caret-position="1116">
+              <caret line="69" column="0" lean-forward="false" selection-start-line="69" selection-start-column="0" selection-end-line="69" selection-end-column="0" />
+              <folding>
+                <marker date="1511629030014" expanded="true" signature="5464:5579" ph="{...}" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -97,7 +116,11 @@
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="144">
               <caret line="12" column="42" lean-forward="false" selection-start-line="12" selection-start-column="42" selection-end-line="12" selection-end-column="42" />
-              <folding />
+              <folding>
+                <marker date="1511629029758" expanded="true" signature="4242:4305" ph="{...}" />
+                <marker date="1511629029758" expanded="false" signature="4335:4341" ph=" { " />
+                <marker date="1511629029758" expanded="false" signature="4357:4361" ph=" }" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -118,8 +141,8 @@
         <option value="$PROJECT_DIR$/src/main/java/com/mycompany/app/Accorns/Accorns/src/SignUp.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/mycompany/app/Accorns/Accorns/src/Users.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/mycompany/app/Accorns/Accorns/src/Accorns.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/mycompany/app/Accorns/Accorns/src/AccountManagement.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/mycompany/app/Accorns/.gitignore" />
+        <option value="$PROJECT_DIR$/src/main/java/com/mycompany/app/Accorns/Accorns/src/AccountManagement.java" />
       </list>
     </option>
   </component>
@@ -144,9 +167,8 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="PackagesPane" />
-      <pane id="AndroidView" />
       <pane id="Scratches" />
+      <pane id="AndroidView" />
       <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
@@ -204,6 +226,7 @@
           <select />
         </subPane>
       </pane>
+      <pane id="PackagesPane" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -373,18 +396,19 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="292" y="24" width="1857" height="1092" extended-state="6" />
+    <frame x="65" y="-4" width="1855" height="1084" extended-state="6" />
     <editor active="true" />
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32959184" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Palette&#9;" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Image Layers" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32959184" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32959184" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
@@ -393,13 +417,12 @@
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Theme Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32959184" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
     </layout>
@@ -412,19 +435,19 @@
       <breakpoints>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/com/mycompany/app/Accorns/Accorns/src/Accorns.java</url>
-          <line>62</line>
+          <line>63</line>
           <properties />
           <option name="timeStamp" value="3" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/com/mycompany/app/Accorns/Accorns/src/Accorns.java</url>
-          <line>68</line>
+          <line>69</line>
           <properties />
           <option name="timeStamp" value="15" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/com/mycompany/app/Accorns/Accorns/src/AccountManagement.java</url>
-          <line>30</line>
+          <line>46</line>
           <properties />
           <option name="timeStamp" value="16" />
         </line-breakpoint>
@@ -446,7 +469,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -478,7 +500,9 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="36">
           <caret line="10" column="13" lean-forward="false" selection-start-line="10" selection-start-column="13" selection-end-line="10" selection-end-column="13" />
-          <folding />
+          <folding>
+            <marker date="1511629029758" expanded="true" signature="9446:9451" ph="{...}" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -486,7 +510,11 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="36">
           <caret line="5" column="13" lean-forward="false" selection-start-line="5" selection-start-column="13" selection-end-line="5" selection-end-column="13" />
-          <folding />
+          <folding>
+            <marker date="1511629029758" expanded="false" signature="2890:2893" ph=" }" />
+            <marker date="1511629029758" expanded="true" signature="2930:3146" ph="{...}" />
+            <marker date="1511629029758" expanded="true" signature="3201:3435" ph="{...}" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -494,7 +522,18 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="4050">
           <caret line="237" column="69" lean-forward="false" selection-start-line="237" selection-start-column="69" selection-end-line="237" selection-end-column="69" />
-          <folding />
+          <folding>
+            <marker date="1511629029990" expanded="true" signature="5931:6088" ph="{...}" />
+            <marker date="1511629029990" expanded="false" signature="6142:6147" ph=" { " />
+            <marker date="1511629029990" expanded="false" signature="6164:6167" ph=" }" />
+            <marker date="1511629029990" expanded="false" signature="6218:6223" ph=" { " />
+            <marker date="1511629029990" expanded="false" signature="6239:6242" ph=" }" />
+            <marker date="1511629029990" expanded="false" signature="6289:6294" ph=" { " />
+            <marker date="1511629029990" expanded="false" signature="6311:6314" ph=" }" />
+            <marker date="1511629029990" expanded="false" signature="6364:6369" ph=" { " />
+            <marker date="1511629029990" expanded="false" signature="6385:6388" ph=" }" />
+            <marker date="1511629029990" expanded="true" signature="6416:6493" ph="{...}" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -502,7 +541,9 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1098">
           <caret line="68" column="0" lean-forward="false" selection-start-line="68" selection-start-column="0" selection-end-line="68" selection-end-column="0" />
-          <folding />
+          <folding>
+            <marker date="1511629030014" expanded="true" signature="5464:5579" ph="{...}" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -510,7 +551,11 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="144">
           <caret line="12" column="42" lean-forward="false" selection-start-line="12" selection-start-column="42" selection-end-line="12" selection-end-column="42" />
-          <folding />
+          <folding>
+            <marker date="1511629029758" expanded="true" signature="4242:4305" ph="{...}" />
+            <marker date="1511629029758" expanded="false" signature="4335:4341" ph=" { " />
+            <marker date="1511629029758" expanded="false" signature="4357:4361" ph=" }" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -606,7 +651,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="36">
           <caret line="6" column="13" lean-forward="false" selection-start-line="6" selection-start-column="13" selection-end-line="6" selection-end-column="13" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -614,15 +658,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="36">
           <caret line="6" column="13" lean-forward="false" selection-start-line="6" selection-start-column="13" selection-end-line="6" selection-end-column="13" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/test/java/com/mycompany/app/StocksTest.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="36">
-          <caret line="4" column="13" lean-forward="false" selection-start-line="4" selection-start-column="13" selection-end-line="4" selection-end-column="13" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -648,50 +683,17 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/mycompany/app/Accorns/Accorns/src/FileInOut.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/mycompany/app/Accorns/Accorns/.gitignore">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/mycompany/app/Accorns/.gitignore">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="36">
-          <caret line="10" column="13" lean-forward="false" selection-start-line="10" selection-start-column="13" selection-end-line="10" selection-end-column="13" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/mycompany/app/Accorns/Accorns/src/Portfolio.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="36">
-          <caret line="5" column="13" lean-forward="false" selection-start-line="5" selection-start-column="13" selection-end-line="5" selection-end-column="13" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/mycompany/app/Accorns/Accorns/src/Logger.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="144">
-          <caret line="12" column="42" lean-forward="false" selection-start-line="12" selection-start-column="42" selection-end-line="12" selection-end-column="42" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/mycompany/app/Accorns/Accorns/src/Users.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="4050">
-          <caret line="237" column="69" lean-forward="false" selection-start-line="237" selection-start-column="69" selection-end-line="237" selection-end-column="69" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/mycompany/app/Accorns/Accorns/src/Accorns.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1098">
-          <caret line="68" column="0" lean-forward="false" selection-start-line="68" selection-start-column="0" selection-end-line="68" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/mycompany/app/Accorns/Accorns/src/AccountManagement.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2988">
-          <caret line="171" column="67" lean-forward="false" selection-start-line="171" selection-start-column="67" selection-end-line="171" selection-end-column="67" />
+          <caret line="2" column="7" lean-forward="true" selection-start-line="2" selection-start-column="7" selection-end-line="2" selection-end-column="7" />
           <folding />
         </state>
       </provider>
@@ -704,18 +706,81 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/mycompany/app/Accorns/Accorns/.gitignore">
+    <entry file="file://$PROJECT_DIR$/src/test/java/com/mycompany/app/StocksTest.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        <state relative-caret-position="36">
+          <caret line="4" column="13" lean-forward="false" selection-start-line="4" selection-start-column="13" selection-end-line="4" selection-end-column="13" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/mycompany/app/Accorns/.gitignore">
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/mycompany/app/Accorns/Accorns/src/FileInOut.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="36">
-          <caret line="2" column="7" lean-forward="true" selection-start-line="2" selection-start-column="7" selection-end-line="2" selection-end-column="7" />
+          <caret line="10" column="13" lean-forward="false" selection-start-line="10" selection-start-column="13" selection-end-line="10" selection-end-column="13" />
+          <folding>
+            <marker date="1511629029758" expanded="true" signature="9446:9451" ph="{...}" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/mycompany/app/Accorns/Accorns/src/Portfolio.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="36">
+          <caret line="5" column="13" lean-forward="false" selection-start-line="5" selection-start-column="13" selection-end-line="5" selection-end-column="13" />
+          <folding>
+            <marker date="1511629029758" expanded="false" signature="2890:2893" ph=" }" />
+            <marker date="1511629029758" expanded="true" signature="2930:3146" ph="{...}" />
+            <marker date="1511629029758" expanded="true" signature="3201:3435" ph="{...}" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/mycompany/app/Accorns/Accorns/src/Users.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="4050">
+          <caret line="251" column="69" lean-forward="false" selection-start-line="251" selection-start-column="69" selection-end-line="251" selection-end-column="69" />
+          <folding>
+            <marker date="1511629029990" expanded="true" signature="5931:6088" ph="{...}" />
+            <marker date="1511629029990" expanded="false" signature="6142:6147" ph=" { " />
+            <marker date="1511629029990" expanded="false" signature="6164:6167" ph=" }" />
+            <marker date="1511629029990" expanded="false" signature="6218:6223" ph=" { " />
+            <marker date="1511629029990" expanded="false" signature="6239:6242" ph=" }" />
+            <marker date="1511629029990" expanded="false" signature="6289:6294" ph=" { " />
+            <marker date="1511629029990" expanded="false" signature="6311:6314" ph=" }" />
+            <marker date="1511629029990" expanded="false" signature="6364:6369" ph=" { " />
+            <marker date="1511629029990" expanded="false" signature="6385:6388" ph=" }" />
+            <marker date="1511629029990" expanded="true" signature="6416:6493" ph="{...}" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/mycompany/app/Accorns/Accorns/src/Accorns.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1116">
+          <caret line="69" column="0" lean-forward="false" selection-start-line="69" selection-start-column="0" selection-end-line="69" selection-end-column="0" />
+          <folding>
+            <marker date="1511629030014" expanded="true" signature="5464:5579" ph="{...}" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/mycompany/app/Accorns/Accorns/src/Logger.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="144">
+          <caret line="12" column="42" lean-forward="false" selection-start-line="12" selection-start-column="42" selection-end-line="12" selection-end-column="42" />
+          <folding>
+            <marker date="1511629029758" expanded="true" signature="4242:4305" ph="{...}" />
+            <marker date="1511629029758" expanded="false" signature="4335:4341" ph=" { " />
+            <marker date="1511629029758" expanded="false" signature="4357:4361" ph=" }" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/mycompany/app/Accorns/Accorns/src/AccountManagement.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="158">
+          <caret line="193" column="4" lean-forward="false" selection-start-line="193" selection-start-column="4" selection-end-line="193" selection-end-column="4" />
           <folding />
         </state>
       </provider>

@@ -31,7 +31,7 @@ public class Portfolio{
 		return portWorth;
 	}
 	//Allows the user on intial sign up to choose which portfolio they want.
-	public void selectPortfolio(String userName) {
+	public void selectPortfolio(String userName)throws IOException {
 		Scanner keys = new Scanner(System.in);
 		
 		System.out.println("Please select one of the following\n"
@@ -97,7 +97,7 @@ public class Portfolio{
 		return etf;
 	}
 	
-	public void doWriteToFile(String fileName, String portFol) {
+	public void doWriteToFile(String fileName, String portFol)throws IOException {
 		fileSystem.writeToFile(fileName, portFol);
 	}
 	

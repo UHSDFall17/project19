@@ -11,6 +11,7 @@ public class Accorns {
 	private static AccountManagement user;
 	private static boolean loggedIn;
 	public static void main(String[] args)throws IOException {
+			FileInOut fileSystem = new FileInOut();
 			user = new AccountManagement();
 			signupLoginMenu();
 	}
@@ -61,17 +62,20 @@ public class Accorns {
 		Scanner keys = new Scanner(System.in);
 		while(loggedIn) {
 			System.out.println("Welcome " + user.getFirstName()
-								+ "\nUnInvested Balance: $" + user.retrevePreinvestedBalance()
-								+ "\nInvested Balance: $" + user.retreveInvestedBalance()
+								+ "\nPreinvested Balance: $" + user.retrevePreinvestedBalance()
+								+ "\nInvested Amount: $" + user.retreveInvestedBalance()
 								+ "\nCurrent Portfolio Worth Per Stock: $" + user.returnPortfolioAverage()
 								+ "\nCurrent Entire Portfolio Worth: $" + user.retreveCalPortfolioWorth()
 								+ "\nProfit: $" + user.retreveProfit()
 								+ "\nProfit Increase Percentage: %" + user.retreveProfitPercent());
 			
-			System.out.println("1: Add To Money Account\n"
-								+ "2: Invest Money\n"
-								+ "3: Portfolio Menu\n"
-								+ "4: Log Out");
+			System.out.println("1: Add To Money Account From Bank\n"
+								+ "2: Add Purchases From Card\n"
+								+ "3: Invest Money\n"
+								+ "4: Sell Stocks\n"
+								+ "5: Portfolio Menu\n"
+								+ "6: Account Menu\n"
+								+ "7: Log Out");
 			
 			select = keys.nextLine();
 			switch(select) {
@@ -84,18 +88,36 @@ public class Accorns {
 		
 				case "2":
 					clearConsole();
-					user.invest();
+					user.addPurchases();
 					promptEnterKey();
 					clearConsole();
 					break;
 					
 				case "3":
 					clearConsole();
-					portfolioMenu();
+					user.invest();
 					clearConsole();
 					break;
 					
 				case "4":
+					clearConsole();
+					user.cashOutPortfolio();
+					clearConsole();
+					break;
+				
+				case "5":
+					clearConsole();
+					portfolioMenu();
+					clearConsole();
+					break;
+				
+				case "6":
+					clearConsole();
+					accountMenu();
+					clearConsole();
+					break;
+				
+				case "7":
 					clearConsole();
 					loggedIn = user.logOut();
 					System.out.println("Log out Successful!");
@@ -120,15 +142,15 @@ public class Accorns {
 			System.out.println("Portfolio Menu:\n\n"
 								+ "Welcome " + user.getFirstName() 
 								+ "\nUnInvested Balance: $" + user.retrevePreinvestedBalance()
-								+ "\nInvested Balance: $" + user.retreveInvestedBalance()
+								+ "\nInvested Amount: $" + user.retreveInvestedBalance()
 								+ "\nCurrent Portfolio Worth Per Stock: $" + user.returnPortfolioAverage()
 								+ "\nCurrent Entire Portfolio Worth: $" + user.retreveCalPortfolioWorth()
 								+ "\nProfit: $" + user.retreveProfit()
 								+ "\nProfit Increase Percentage: %" + user.retreveProfitPercent());
 			
 			System.out.println("1: Portfolio Breakdown\n"
-								+ "2: Investment History\n"
-								+ "3: Portfolio Menu\n"
+								+ "2: Current Investment History\n"
+								+ "3: Sold Investment History\n"
 								+ "4: Back To Main Menu");
 			
 			select = keys.nextLine();
@@ -142,14 +164,15 @@ public class Accorns {
 		
 				case "2":
 					clearConsole();
-					user.investmentHistory();
+					user.currentInvestmentHistory();
 					promptEnterKey();
 					clearConsole();
 					break;
 					
 				case "3":
 					clearConsole();
-					
+					user.pastInvestmentHistory();
+					promptEnterKey();
 					clearConsole();
 					break;
 					
@@ -158,7 +181,51 @@ public class Accorns {
 					inMenu = false;
 					clearConsole();
 					break;
+				default:
+					System.out.println("Sorry, that was not an option\nPlease try again\n");
+					break;
+			}
+		}
+	}
+	
+	public static void accountMenu() throws IOException{
+		boolean inMenu = true;
+		Scanner keys = new Scanner(System.in);
+		String select;
+		while(inMenu) {
+			System.out.println("Account Menu:\n\n");
+			
+			System.out.println("1: Change Password\n"
+								+ "2: Back To Main Menu");
+			
+			select = keys.nextLine();
+			switch(select) {
+				case "1":
+					clearConsole();
+					user.changePassword();
+					promptEnterKey();
+					clearConsole();
+					break;
+		
+				/*case "2":
+					clearConsole();
+					user.currentInvestmentHistory();
+					promptEnterKey();
+					clearConsole();
+					break;
 					
+				case "3":
+					clearConsole();
+					user.pastInvestmentHistory();
+					promptEnterKey();
+					clearConsole();
+					break;*/
+					
+				case "2":
+					clearConsole();
+					inMenu = false;
+					clearConsole();
+					break;
 				default:
 					System.out.println("Sorry, that was not an option\nPlease try again\n");
 					break;
