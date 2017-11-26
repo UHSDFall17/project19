@@ -1,3 +1,4 @@
+
 public class Stocks {
 
 	Stocks(){
@@ -5,7 +6,7 @@ public class Stocks {
 	}
 	
     // Given symbol, get HTML
-    private static String readHTML(String symbol) {
+    public static String readHTML(String symbol) {
         In page = new In("https://finance.google.com/finance?q=NASDAQ:" + symbol);
         String html = page.readAll();
         if (html.contains("<title></title>")) return null;

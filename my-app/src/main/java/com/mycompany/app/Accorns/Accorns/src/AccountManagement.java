@@ -43,8 +43,9 @@ public class AccountManagement extends Users {
 		return (calPortfolioWorth());
 	}
 	public double retreveProfitPercent()throws IOException{
-		DecimalFormat df2 = new DecimalFormat("#.##");
-		
+
+		DecimalFormat df2 = new DecimalFormat("#.######");
+
 		return Double.parseDouble(df2.format(100*calChange(investedAmount, calPortfolioWorth())));
 	}
 	
@@ -183,13 +184,14 @@ public class AccountManagement extends Users {
 		
 		return Double.parseDouble(df2.format(portfolioWorth));
 	}
-	
-	public double calChange(double orginalAmount, double newAmount) {
-		if(orginalAmount == 0)
-			return 0;
-		
-		return((newAmount - orginalAmount)/ orginalAmount);
-	}
+
+	public double calChange(double originalAmount, double newAmount) {
+        if (originalAmount == 0) {
+            return 0;
+        } else {
+            return ((newAmount - originalAmount) / originalAmount);
+        }
+    }
 	
 	
 	public void currentInvestmentHistory() throws IOException{
