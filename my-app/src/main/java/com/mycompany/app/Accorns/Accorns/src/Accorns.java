@@ -10,6 +10,7 @@ import java.util.Scanner;
 public class Accorns {
 	private static AccountManagement user;
 	private static boolean loggedIn;
+	private static String userType;
 	public static void main(String[] args)throws IOException {
 			FileInOut fileSystem = new FileInOut();
 			user = new AccountManagement();
@@ -53,15 +54,19 @@ public class Accorns {
 			
 		
 		}while(!loggedIn);
+		
+		selectUserType();
+		
 		signedInMenu();
 	}
 
 	public static void signedInMenu()throws IOException {
-		
+
 		String select = "";
 		Scanner keys = new Scanner(System.in);
 		while(loggedIn) {
 			System.out.println("Welcome " + user.getFirstName()
+								+ "\nAccount Type: " + userType
 								+ "\nPreinvested Balance: $" + user.retrevePreinvestedBalance()
 								+ "\nInvested Amount: $" + user.retreveInvestedBalance()
 								+ "\nCurrent Portfolio Worth Per Stock: $" + user.returnPortfolioAverage()
@@ -236,9 +241,29 @@ public class Accorns {
 		for(int i = 0; i < 50; i++)
 			System.out.println("\n");
 	}
-
-
-public static void promptEnterKey(){
+	//Added to accomadate the Corporate user requirement
+	public static void selectUserType() {
+		try {
+			if(user.retreveInvestedBalance() > 100000) {
+				userType = "Corporate Gold";
+				user.addMoney(5, user.retrevePreinvestedBalance());
+			}
+			else if(user.retreveInvestedBalance() > 50000) {
+				userType = "Corporate Silver";
+				user.addMoney(1, user.retrevePreinvestedBalance());
+			}
+			else if(user.retreveInvestedBalance() > 500) {
+				userType = "Standard Gold";
+			}
+			else if(user.retreveInvestedBalance() > 100000) {
+				userType = "Standard Silver";
+			}
+			else
+				userType = "Standard";
+		}catch(IOException ex) {}
+	}
+	
+	public static void promptEnterKey(){
 	   System.out.println("Press \"ENTER\" to continue...");
 	   Scanner scanner = new Scanner(System.in);
 	   scanner.nextLine();
